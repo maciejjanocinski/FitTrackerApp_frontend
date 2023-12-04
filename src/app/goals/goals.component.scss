@@ -1,0 +1,17 @@
+.goalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__nutrients {
+    display: flex;
+    flex-direction: column;
+    p{
+      padding: 1vh 0;
+    }
+  }
+
+  &__form {
+
+  }
+}

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
 import {LoginDto} from './loginDto';
-import {backendBaseUrl} from '../../../../config';
+import {backendBaseUrl} from '../../../../apiUtils';
 import axios from 'axios';
 @Component({
   selector: 'app-login',
