@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegisterDto} from './registerDto';
-import {backendBaseUrl} from '../../../../config';
+import {backendBaseUrl} from '../../../../apiUtils';
 import axios from 'axios';
 import {Router} from '@angular/router';
 

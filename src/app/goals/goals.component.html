@@ -1,1 +1,41 @@
-<p>goals works!</p>
+<app-navbar></app-navbar>
+<div class="goalContainer">
+
+  <div *ngIf="goalData" class="goalContainer__nutrients">
+      <p>Sum Kcal: {{ goalData.kcalGoal }}</p>
+      <p>Protein: {{ goalData.proteinInGram }}</p>
+      <p>Carbohydates: {{ goalData.carbohydratesInGram }}</p>
+      <p>Fat: {{ goalData.fatInGram }}</p>
+      <p>Fiber: {{ goalData.fiberInGram }}</p>
+  </div>
+
+  <div class="mb-3 form goalContainer__form">
+    <form (ngSubmit)="setGoals()" [formGroup]="setGoalsForm">
+      <div class="mb-3">
+        <label for="kcal" class="form-label">Calories</label>
+        <input type="text" class="form-control" id="kcal" formControlName="kcal">
+      </div>
+
+      <div class="mb-3">
+        <label for="proteinPercentage" class="form-label">Protein %</label>
+        <input type="text" class="form-control" id="proteinPercentage" formControlName="proteinPercentage">
+      </div>
+
+      <div class="mb-3">
+        <label for="carbohydratesPercentage" class="form-label">Carbs %</label>
+        <input type="text" class="form-control" id="carbohydratesPercentage" formControlName="carbohydratesPercentage">
+      </div>
+
+      <div class="mb-3">
+        <label for="fatPercentage" class="form-label">Fat %</label>
+        <input type="text" class="form-control" id="fatPercentage" formControlName="fatPercentage">
+      </div>
+
+      <div *ngIf="setGoalsFormError" class="text-danger mb-3">{{ setGoalsFormError }}</div>
+      <button type="submit" class="btn btn-primary">Set goal</button>
+    </form>
+  </div>
+</div>
+
+
+<!--//-->

@@ -1,1 +1,38 @@
-<p>diary works!</p>
+<app-navbar></app-navbar>
+<div *ngIf="diaryData">
+  <div class="diary">
+
+    <h2>Diary</h2>
+    <div class="diary__nutrients">
+      <p>Sum Kcal: {{ diaryData.sumKcal }}</p>
+      <p>Protein: {{ diaryData.sumProtein }}</p>
+      <p>Carbohydates: {{ diaryData.sumCarbohydrates }}</p>
+      <p>Fat: {{ diaryData.sumFat }}</p>
+      <p>Fiber: {{ diaryData.sumFiber }}</p>
+    </div>
+    <div class="diary__nutrients">
+      <p>GoalKcal: {{ diaryData.goalKcal }}</p>
+      <p>Protein: {{ diaryData.goalProtein }}</p>
+      <p>Carbohydates: {{ diaryData.goalCarbohydrates }}</p>
+      <p>Fat: {{ diaryData.goalFat }}</p>
+      <p>Fiber: {{ diaryData.goalFiber }}</p>
+    </div>
+    <div class="diary__nutrients">
+      <p>Left Kcal: {{ diaryData.leftKcal }}</p>
+      <p>Protein: {{ diaryData.leftProtein }}</p>
+      <p>Carbohydates: {{ diaryData.leftCarbohydrates }}</p>
+      <p>Fat: {{ diaryData.leftFat }}</p>
+      <p>Fiber: {{ diaryData.leftFiber }}</p>
+    </div>
+
+    <h2>Products</h2>
+    <ul class="diary__productList">
+      <li *ngFor="let product of diaryData.productsInDiary">
+        {{ product.name }} - {{ product.quantity }} {{ product.currentlyUsedMeasure }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!--//-->

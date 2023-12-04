@@ -1,9 +1,20 @@
-.navbar-component {
-  width: 100vw;
-  height: 5hv;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
+.navbar {
+
+  &__list {
+    display: flex;
+    width: 100%;
+  }
 }
 
+#rightSideOfNav {
+  display: flex;
+  margin-left: auto;
+}
+
+@media (max-width: 991px) {
+  #rightSideOfNav {
+    display: flex;
+    margin-left: 0;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,34 @@
+h2 {
+  align-self: flex-start;
+  margin-left: 15vw;
+  margin-top: 5vh;
+  padding: 1vh 0;
+}
+
+.diary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  &__nutrients {
+    display: flex;
+    width: 70vw;
+    justify-content: space-between;
+    padding: 2vh 0;
+  }
+
+  &__productList {
+    align-self: flex-start;
+    margin-left: 15vw;
+    padding: 0 1vw;
+
+    li {
+      padding: 1vh 0;
+    }
+  }
+
+}
+
+
