@@ -16,6 +16,9 @@ import {AuthGuardStandard } from './auth/login/AuthGuardStandard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LogoutComponent} from "./logout/logout.component";
+import { ProductComponent } from './product/product.component';
+import {ModalComponent} from "./product/modal";
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +32,16 @@ import {LogoutComponent} from "./logout/logout.component";
     RecipesComponent,
     ProductsComponent,
     LogoutComponent,
+    ProductComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    NavbarComponent
+    NavbarComponent,
+    MatDialogModule
   ],
   providers: [AuthGuardStandard],
   bootstrap: [AppComponent]

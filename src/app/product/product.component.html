@@ -1,0 +1,33 @@
+<li class="product">
+  <div class="card" style="width: 18rem;">
+    <div class="imgContainer">
+      <img [src]="product.image" class="card-img-top product__image" alt="...">
+    </div>
+    <div class="card-body">
+      <div class="nameContainer">
+      <h5 class="card-title product__name">{{ product.name }}</h5>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Kcal</th>
+          <th scope="col">Protein</th>
+          <th scope="col">Carbs</th>
+          <th scope="col">Fat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ product.kcal }}</td>
+          <td>{{ product.protein }}</td>
+          <td>{{product.carbohydrates}}</td>
+          <td>{{ product.fat }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="openModal()">Open Modal</button>
+    </div>
+  </div>
+</li>
+
+

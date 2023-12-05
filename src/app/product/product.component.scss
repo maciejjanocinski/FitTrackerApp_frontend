@@ -1,0 +1,39 @@
+.product {
+  margin: 10px;
+  width: 300px;
+  height: 500px;
+
+  &__image {
+    width: 100%;
+    max-width: 200px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__name {
+    padding: 3px;
+  }
+}
+
+.imgContainer {
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 200px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  color: black;
+}

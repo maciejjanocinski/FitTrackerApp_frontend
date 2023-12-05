@@ -28,16 +28,6 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  getGoalData() {
-    axios.get<any>(backendBaseUrl + '/goal/', this.authHeader)
-      .then(response => {
-        this.productsDto = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   searchProducts() {
     if (this.searchProductsForm.invalid) {
       this.searchProductsFormError = "Please fill all fields";
@@ -49,9 +39,11 @@ export class ProductsComponent implements OnInit {
     const query: any = formValues.name;
 
     axios
-      .get<any>(backendBaseUrl + '/products/search?product=' + query, this.authHeader)
+      .get<any>(`${backendBaseUrl}/products/search?product=${query}`, this.authHeader)
       .then((response) => {
+        console.log(response.data);
         this.products = response.data;
+        this.searchProductsFormError = '';
       })
       .catch((error) => {
         console.log(error);
