@@ -1,38 +1,285 @@
 <app-navbar></app-navbar>
 <div *ngIf="diaryData">
-  <div class="diary">
+    <div class="diary">
 
-    <h2>Diary</h2>
-    <div class="diary__nutrients">
-      <p>Sum Kcal: {{ diaryData.sumKcal }}</p>
-      <p>Protein: {{ diaryData.sumProtein }}</p>
-      <p>Carbohydates: {{ diaryData.sumCarbohydrates }}</p>
-      <p>Fat: {{ diaryData.sumFat }}</p>
-      <p>Fiber: {{ diaryData.sumFiber }}</p>
-    </div>
-    <div class="diary__nutrients">
-      <p>GoalKcal: {{ diaryData.goalKcal }}</p>
-      <p>Protein: {{ diaryData.goalProtein }}</p>
-      <p>Carbohydates: {{ diaryData.goalCarbohydrates }}</p>
-      <p>Fat: {{ diaryData.goalFat }}</p>
-      <p>Fiber: {{ diaryData.goalFiber }}</p>
-    </div>
-    <div class="diary__nutrients">
-      <p>Left Kcal: {{ diaryData.leftKcal }}</p>
-      <p>Protein: {{ diaryData.leftProtein }}</p>
-      <p>Carbohydates: {{ diaryData.leftCarbohydrates }}</p>
-      <p>Fat: {{ diaryData.leftFat }}</p>
-      <p>Fiber: {{ diaryData.leftFiber }}</p>
-    </div>
+        <h2>Diary</h2>
+        <div class="diary__nutrients">
+            <p>Sum Kcal: {{ diaryData.sumKcal }}</p>
+            <p>Protein: {{ diaryData.sumProtein }}</p>
+            <p>Carbohydates: {{ diaryData.sumCarbohydrates }}</p>
+            <p>Fat: {{ diaryData.sumFat }}</p>
+            <p>Fiber: {{ diaryData.sumFiber }}</p>
+        </div>
+        <div class="diary__nutrients">
+            <p>GoalKcal: {{ diaryData.goalKcal }}</p>
+            <p>Protein: {{ diaryData.goalProtein }}</p>
+            <p>Carbohydates: {{ diaryData.goalCarbohydrates }}</p>
+            <p>Fat: {{ diaryData.goalFat }}</p>
+            <p>Fiber: {{ diaryData.goalFiber }}</p>
+        </div>
+        <div class="diary__nutrients">
+            <p>Left Kcal: {{ diaryData.leftKcal }}</p>
+            <p>Protein: {{ diaryData.leftProtein }}</p>
+            <p>Carbohydates: {{ diaryData.leftCarbohydrates }}</p>
+            <p>Fat: {{ diaryData.leftFat }}</p>
+            <p>Fiber: {{ diaryData.leftFiber }}</p>
+        </div>
 
-    <h2>Products</h2>
-    <ul class="diary__productList">
-      <li *ngFor="let product of diaryData.productsInDiary">
-        {{ product.name }} - {{ product.quantity }} {{ product.currentlyUsedMeasure }}
-      </li>
-    </ul>
-  </div>
+        <div class="diary__newProductRow">
+            <h2>Products</h2>
+            <div>
+                <button type="button" class="btn btn-success" (click)="goToProducts()" >Add new product</button>
+            </div>
+        </div>
+
+        <table class="table diary__productList table-dark table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Measure</th>
+                <th scope="col">Kcal</th>
+                <th scope="col">Protein</th>
+                <th scope="col">Carbohydrates</th>
+                <th scope="col">Fat</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Product Info</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of diaryData.productsInDiary" id="{{product.id}}">
+                <td><img class="diary__listImg" src="{{ product.image }}" alt="{{ product.name }}"></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.currentlyUsedMeasure }}</td>
+                <td>{{ product.kcal }}</td>
+                <td>{{ product.protein }}</td>
+                <td>{{ product.carbohydrates }}</td>
+                <td>{{ product.fat }}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            [attr.data-bs-target]="'#productModal' + product.id">
+                        Edit
+                    </button>
+                    <div class="modal fade" id="ProductModal" [id]="'productModal' + product.id" tabindex="-1"
+                         aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ product.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="imgContainer">
+                                        <img [src]="product.image" class="card-img-top image" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Kcal</th>
+                                                <th scope="col">Protein</th>
+                                                <th scope="col">Carbs</th>
+                                                <th scope="col">Fat</th>
+                                                <th scope="col">Fiber</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ product.kcal }}</td>
+                                                <td>{{ product.protein }}</td>
+                                                <td>{{product.carbohydrates}}</td>
+                                                <td>{{ product.fat }}</td>
+                                                <td>{{ product.fiber }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <label>Select Measure:</label>
+                                        <select class="form-select" [(ngModel)]="selectedMeasure"
+                                                aria-label="Select Measure:">
+                                            <option *ngFor="let measure of product.measures"
+                                                    [value]="measure.name"> {{ measure.name }}
+                                                - {{measure.weight}} Gram
+                                            </option>
+                                        </select>
+
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Quantity:</label>
+                                        <input type="number" class="form-control" [(ngModel)]="selectedQuantity"
+                                               placeholder="Enter quantity"
+                                               step="0.1" pattern="\d+(\.\d{1})?">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div *ngIf="EditProductError"
+                                             class="text-danger mb-3">{{ EditProductError }}</div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" id="addButton" class="btn btn-primary"
+                                                [disabled]="!selectedQuantity || !selectedMeasure"
+                                                data-bs-dismiss="modal"
+                                                (click)="editProduct(product.id)">Add product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger" (click)=deleteProduct(product.id)>Delete
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                            [attr.data-bs-target]="'#productModal2' + product.id">
+                        Info
+                    </button>
+                    <div class="modal fade" id="ProductModal2" [id]="'productModal2' + product.id" tabindex="-1"
+                         aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel2">{{ product.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="imgContainer">
+                                        <img [src]="product.image" class="card-img-top image" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Kcal</th>
+                                                <th scope="col">Protein</th>
+                                                <th scope="col">Carbs</th>
+                                                <th scope="col">Fat</th>
+                                                <th scope="col">Fiber</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ product.kcal }}</td>
+                                                <td>{{ product.protein }}</td>
+                                                <td>{{product.carbohydrates}}</td>
+                                                <td>{{ product.fat }}</td>
+                                                <td>{{ product.fiber }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#productModal3' + product.id">
+                                        Edit
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" (click)=deleteProduct(product.id)>Delete
+                                    </button>
+
+
+                                    <div class="modal-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="ProductModal3" [id]="'productModal3' + product.id" tabindex="-1"
+                         aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel3">{{ product.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="imgContainer">
+                                        <img [src]="product.image" class="card-img-top image" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Kcal</th>
+                                                <th scope="col">Protein</th>
+                                                <th scope="col">Carbs</th>
+                                                <th scope="col">Fat</th>
+                                                <th scope="col">Fiber</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ product.kcal }}</td>
+                                                <td>{{ product.protein }}</td>
+                                                <td>{{product.carbohydrates}}</td>
+                                                <td>{{ product.fat }}</td>
+                                                <td>{{ product.fiber }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <label>Select Measure:</label>
+                                        <select class="form-select" [(ngModel)]="selectedMeasure"
+                                                aria-label="Select Measure:">
+                                            <option *ngFor="let measure of product.measures"
+                                                    [value]="measure.name"> {{ measure.name }}
+                                                - {{measure.weight}} Gram
+                                            </option>
+                                        </select>
+
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label>Quantity:</label>
+                                        <input type="number" class="form-control" [(ngModel)]="selectedQuantity"
+                                               placeholder="Enter quantity"
+                                               step="0.1" pattern="\d+(\.\d{1})?">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div *ngIf="EditProductError"
+                                             class="text-danger mb-3">{{ EditProductError }}</div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary"
+                                                [disabled]="!selectedQuantity || !selectedMeasure"
+                                                data-bs-dismiss="modal"
+                                                (click)="editProduct(product.id)">Add product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
 </div>
 
 
-<!--//-->
