@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/register/register.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './auth/login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DiaryComponent } from './diary/diary.component';
@@ -16,9 +16,9 @@ import {AuthGuardStandard } from './auth/login/AuthGuardStandard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LogoutComponent} from "./logout/logout.component";
-import { ProductComponent } from './product/product.component';
-import {ModalComponent} from "./product/modal";
+import { ProductComponent } from './productElement/product.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProductsComponent,
     LogoutComponent,
     ProductComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     NgbModule,
     NavbarComponent,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [AuthGuardStandard],
   bootstrap: [AppComponent]
