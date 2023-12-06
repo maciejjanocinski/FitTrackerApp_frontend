@@ -1,11 +1,11 @@
 .product {
   margin: 10px;
-  width: 300px;
-  height: 500px;
+  width: fit-content;
+  height: fit-content;
 
   &__image {
     width: 100%;
-    max-width: 200px;
+    max-width: 350px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
@@ -17,13 +17,20 @@
   }
 }
 
+.measures {
+  border : 1px solid black;
+  max-width: 200px !important;
+  max-height: 150px !important;
+  overflow: scroll;
+}
+
 .imgContainer {
   padding-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 200px;
+  height: 150px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -34,7 +41,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100px;
+  min-height: 50px;
 }
 
 
