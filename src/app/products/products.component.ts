@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
 import {Router, UrlSerializer} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,8 @@ export class ProductsComponent implements OnInit {
   searchProductsForm: FormGroup = new FormGroup({});
   searchProductsFormError: string = '';
   products: any = [];
-  constructor(private formBuilder: FormBuilder) {
+  loading = false;
+  constructor( private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -30,22 +32,27 @@ export class ProductsComponent implements OnInit {
 
   searchProducts() {
     if (this.searchProductsForm.invalid) {
-      this.searchProductsFormError = "Please fill all fields";
+      this.searchProductsFormError = 'Please fill all fields';
       return;
     }
+
+    this.loading = true;
 
     const formValues = this.searchProductsForm.value;
     const query: any = formValues.name;
 
     axios
-      .get<any>(`${backendBaseUrl}/products/search?product=${query}`, this.authHeader)
-      .then((response) => {
-        this.products = response.data;
-        console.log(this.products)
-        this.searchProductsFormError = '';
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .get<any>(`${backendBaseUrl}/products/search?product=${query}`, this.authHeader)
+        .then((response) => {
+          this.products = response.data;
+          console.log(this.products);
+          this.searchProductsFormError = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
   }
 }

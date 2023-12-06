@@ -29,6 +29,7 @@ export class DiaryComponent implements OnInit {
   getDiaryData() {
     axios.get<any>(backendBaseUrl + '/diary/', this.authHeader)
       .then(response => {
+        console.log(response.data);
         this.diaryData = response.data;
       })
       .catch(error => {

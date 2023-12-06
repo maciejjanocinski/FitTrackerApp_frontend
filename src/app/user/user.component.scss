@@ -1,0 +1,20 @@
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__disabledForm {
+    opacity: 0.5;
+  }
+
+  &__disabledButton {
+    opacity: 0;
+  }
+}
