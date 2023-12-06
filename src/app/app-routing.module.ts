@@ -11,6 +11,7 @@ import {PremiumComponent} from './premium/premium.component';
 import {RecipesComponent} from './recipes/recipes.component';
 import {ProductsComponent} from './products/products.component';
 import {LogoutComponent} from "./logout/logout.component";
+import {AuthGuardPremium} from "./auth/login/AuthGuardPremium";
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'goals', component: GoalsComponent, canActivate: [AuthGuardStandard]},
   { path: 'user', component: UserComponent, canActivate: [AuthGuardStandard]},
   { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardStandard]},
-  { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardStandard]},
+  { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardPremium]},
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardStandard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardStandard]},
   { path: '**', redirectTo: '', pathMatch: 'full' },

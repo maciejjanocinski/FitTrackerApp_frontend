@@ -40,7 +40,6 @@
         </table>
 
 
-
         <table class="table diary__table table-dark  " id="tableCustom">
             <thead>
             <tr>
@@ -192,14 +191,30 @@
                                         </table>
                                     </div>
 
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                                            [attr.data-bs-target]="'#productModal3' + product.id">
-                                        Edit
-                                    </button>
+                                    <table class="table nestedTable">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Measure</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ product.quantity }}</td>
+                                            <td>{{ product.currentlyUsedMeasure }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="buttons">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                [attr.data-bs-target]="'#productModal3' + product.id">
+                                            Edit
+                                        </button>
 
-                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                            (click)=deleteProduct(product.id)>Delete
-                                    </button>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                                (click)=deleteProduct(product.id)>Delete
+                                        </button>
+                                    </div>
 
 
                                     <div class="modal-footer">
@@ -244,6 +259,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
+
                                     </div>
 
 

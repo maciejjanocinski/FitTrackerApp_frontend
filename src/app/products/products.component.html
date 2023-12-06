@@ -1,20 +1,29 @@
 <app-navbar></app-navbar>
-<div class="mb-3  products">
 
-  <form (ngSubmit)="searchProducts()" [formGroup]="searchProductsForm" class="products__search">
-    <div class="mb-3">
-      <label for="name" class="form-label">Search</label>
-      <input type="text" class="form-control" id="name" formControlName="name" placeholder="product name">
-      <div *ngIf="searchProductsFormError" class="text-danger mb-3">{{ searchProductsFormError }}</div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+<div class="mb-3 products">
+
+  <div class="card text-bg-dark mb-3">
+    <h5 class="card-header">Featured</h5>
+    <div class="card-body">
+      <form (ngSubmit)="searchProducts()" [formGroup]="searchProductsForm" class="products__search">
+        <div class="mb-3">
+          <label for="name" class="form-label">Search</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="product name">
+          <div *ngIf="searchProductsFormError" class="text-danger mb-3">{{ searchProductsFormError }}</div>
+          <button type="submit" class="btn btn-info" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span role="status">{{ loading ? ' Loading...' : 'Search' }}</span>
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+
 
 
   <div class="products__listContainer">
     <ul class="products__list">
       <app-product *ngFor="let product of products" [thisProduct]="product"></app-product>
-
     </ul>
   </div>
 </div>

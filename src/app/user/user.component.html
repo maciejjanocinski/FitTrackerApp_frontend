@@ -1,2 +1,107 @@
 <app-navbar></app-navbar>
-<p>user works!</p>
+<div *ngIf="userData" class="user">
+    <div class="mb-3 form user__editUsernameForm ">
+        <form (ngSubmit)="editUsername()" [formGroup]="usernameForm"
+              [attr.disabled]="isUsernameFormDisabled() ? true : null">
+
+            <div class="form-group" [class.user__disabledForm]="isUsernameFormDisabled()">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" formControlName="username">
+                </div>
+
+            </div>
+
+            <div class="user__buttons">
+                <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled()"
+                        (click)="toggleUsernameForm()">Edit
+                </button>
+                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isUsernameFormDisabled()" [disabled]="isUsernameFormDisabled()">Update username</button>
+            </div>
+            <div *ngIf="usernameFormError" class="text-danger mb-3">{{ usernameFormError }}</div>
+        </form>
+    </div>
+
+    <div class="mb-3 form user__editUserForm ">
+        <form (ngSubmit)="editUserData()" [formGroup]="UserDataForm"
+              [attr.disabled]="isFormDisabled() ? true : null">
+            <div class="form-group" [class.user__disabledForm]="isFormDisabled()">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Surname</label>
+                    <input type="text" class="form-control" id="surname" formControlName="surname">
+                </div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" aria-label="gender:" id="gender" formControlName="gender">
+                        <option value="MALE">
+                            Male
+                        </option>
+                        <option value="FEMALE">
+                            Female
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="text" class="form-control" id="email" formControlName="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" formControlName="phone">
+                </div>
+            </div>
+
+            <div class="user__buttons">
+                <button type="button" class="btn btn-primary" [disabled]="!isFormDisabled()" (click)="toggleForm()">Edit
+                </button>
+                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isFormDisabled()" [disabled]="isFormDisabled()">Update profile</button>
+            </div>
+            <div *ngIf="UserDataFormError" class="text-danger mb-3">{{ UserDataFormError }}</div>
+
+        </form>
+    </div>
+
+    <div class="mb-3 form user__editPasswordForm ">
+        <form (ngSubmit)="editPassword()" [formGroup]="passwordForm"
+              [attr.disabled]="isPasswordFormDisabled() ? true : null">
+
+            <div class="form-group" [class.user__disabledForm]="isPasswordFormDisabled()">
+
+                <div class="mb-3">
+                    <label for="oldPassword" class="form-label">Old password</label>
+                    <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword">
+                </div>
+
+                <div class="mb-3">
+                    <label for="newPassword" class="form-label">New password</label>
+                    <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmNewPassword" class="form-label">Confirm new password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword"
+                           formControlName="confirmNewPassword">
+                </div>
+            </div>
+
+            <div class="user__buttons">
+                <button type="button" class="btn btn-primary" [disabled]="!isPasswordFormDisabled()"
+                        (click)="togglePasswordForm()">Edit
+                </button>
+                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isPasswordFormDisabled()" [disabled]="isPasswordFormDisabled()">Update password</button>
+            </div>
+            <div *ngIf="passwordFormError" class="text-danger mb-3">{{ passwordFormError }}</div>
+
+        </form>
+    </div>
+</div>
