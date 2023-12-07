@@ -20,7 +20,7 @@ export class PremiumComponent {
 
   go() {
     axios
-      .post<any>(backendBaseUrl + '/create-checkout-session', this.authHeader)
+      .get<any>(backendBaseUrl + '/create-checkout-session', this.authHeader)
       .then((response) => {
         window.location.href = response.data;
       })
@@ -32,7 +32,7 @@ export class PremiumComponent {
 
   goPortal() {
     axios
-      .post<any>(backendBaseUrl + "/create-customer-portal-session", this.authHeader)
+      .get<any>(backendBaseUrl + "/create-customer-portal-session", this.authHeader)
       .then((response) => {
         window.location.href = response.data;
       })
