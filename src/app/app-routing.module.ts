@@ -12,6 +12,8 @@ import {RecipesComponent} from './recipes/recipes.component';
 import {ProductsComponent} from './products/products.component';
 import {LogoutComponent} from "./logout/logout.component";
 import {AuthGuardPremium} from "./auth/login/AuthGuardPremium";
+import {SuccessComponent} from "./success/success.component";
+import {CancelComponent} from "./cancel/cancel.component";
 
 
 const routes: Routes = [
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardPremium]},
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardStandard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardStandard]},
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: 'success', component: SuccessComponent, canActivate: [AuthGuardStandard]},
+  { path: 'cancel', component: CancelComponent, canActivate: [AuthGuardStandard]},
+   // { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

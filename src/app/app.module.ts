@@ -18,6 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LogoutComponent} from "./logout/logout.component";
 import { ProductComponent } from './productElement/product.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SuccessComponent } from './success/success.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProductsComponent,
     LogoutComponent,
     ProductComponent,
+    SuccessComponent,
+    CancelComponent,
   ],
   imports: [
     BrowserModule,
