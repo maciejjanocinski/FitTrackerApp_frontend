@@ -15,8 +15,9 @@ export class AuthGuardStandard {
     if (token) {
       try {
         const decodedToken: any = jwtDecode(token);
+        const roles = decodedToken.roles;
 
-        if (decodedToken.roles === 'ROLE_USER_STANDARD') {
+        if (roles.includes('ROLE_USER_STANDARD') || roles.includes('ROLE_USER_PREMIUM') || roles.includes('ROLE_USER_ADMIN')) {
           return true;
         } else {
           this.router.navigate(['/auth/login']);
