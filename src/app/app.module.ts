@@ -20,7 +20,9 @@ import { ProductComponent } from './productElement/product.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SuccessComponent } from './success/success.component';
 import { CancelComponent } from './cancel/cancel.component';
-
+import { ActivePremiumComponent } from './active-premium/active-premium.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PremiumModalComponent } from './recipes/premium-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,8 @@ import { CancelComponent } from './cancel/cancel.component';
     ProductComponent,
     SuccessComponent,
     CancelComponent,
+    ActivePremiumComponent,
+    PremiumModalComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { CancelComponent } from './cancel/cancel.component';
     NavbarComponent,
     MatDialogModule,
     FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [AuthGuardStandard],
   bootstrap: [AppComponent]

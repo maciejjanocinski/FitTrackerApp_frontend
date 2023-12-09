@@ -1,14 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {jwtDecode} from 'jwt-decode';
+import {PremiumModalComponent} from "../../recipes/premium-modal.component";
+import {BsModalService} from "ngx-bootstrap/modal";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuardPremium {
 
-  constructor(private router: Router) {
-  }
+  constructor(
+    private router: Router,
+    private modalService: BsModalService
+  ) {}
 
   canActivate(): boolean {
     const token = localStorage.getItem('token');
@@ -23,6 +27,7 @@ export class AuthGuardPremium {
           return true;
         } else {
           this.router.navigate(['/premium']);
+          const modalRef = this.modalService.show(PremiumModalComponent);
           return false;
         }
       } catch (error) {

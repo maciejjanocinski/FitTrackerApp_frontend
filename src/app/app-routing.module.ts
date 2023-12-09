@@ -8,13 +8,15 @@ import {DiaryComponent} from './diary/diary.component';
 import {GoalsComponent} from './goals/goals.component';
 import {UserComponent} from './user/user.component';
 import {PremiumComponent} from './premium/premium.component';
-import {RecipesComponent} from './recipes/recipes.component';
 import {ProductsComponent} from './products/products.component';
 import {LogoutComponent} from "./logout/logout.component";
-import {AuthGuardPremium} from "./auth/login/AuthGuardPremium";
 import {SuccessComponent} from "./success/success.component";
 import {CancelComponent} from "./cancel/cancel.component";
-
+import {AuthGuardStandardForPremium} from "./auth/login/AuthGuardStandardForPremium";
+import {AuthGuardPremiumForPremium} from "./auth/login/AuthGuardPremiumForPremium";
+import {RecipesComponent} from "./recipes/recipes.component";
+import {AuthGuardPremium} from "./auth/login/AuthGuardPremium";
+import {ActivePremiumComponent} from "./active-premium/active-premium.component";
 
 const routes: Routes = [
   { path: 'auth/register', component: RegisterComponent},
@@ -23,7 +25,8 @@ const routes: Routes = [
   { path: 'diary', component: DiaryComponent, canActivate: [AuthGuardStandard]},
   { path: 'goals', component: GoalsComponent, canActivate: [AuthGuardStandard]},
   { path: 'user', component: UserComponent, canActivate: [AuthGuardStandard]},
-  { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardStandard]},
+  { path: 'premium', component: PremiumComponent, canActivate: [AuthGuardStandardForPremium]},
+  { path: 'premium/active', component: ActivePremiumComponent, canActivate: [AuthGuardPremiumForPremium]},
   { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardPremium]},
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardStandard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardStandard]},
