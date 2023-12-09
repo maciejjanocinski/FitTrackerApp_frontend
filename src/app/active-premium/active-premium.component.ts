@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-premium',
-  templateUrl: './premium.component.html',
-  styleUrls: ['./premium.component.scss']
+  selector: 'app-active-premium',
+  templateUrl: './active-premium.component.html',
+  styleUrls: ['./active-premium.component.scss']
 })
-export class PremiumComponent {
-
-  constructor() { }
+export class ActivePremiumComponent {
 
   authHeader  = {
     headers: {
@@ -18,9 +15,9 @@ export class PremiumComponent {
     }
   }
 
-  go() {
+  goPortal() {
     axios
-      .get<any>(backendBaseUrl + '/create-checkout-session', this.authHeader)
+      .get<any>(backendBaseUrl + "/create-customer-portal-session", this.authHeader)
       .then((response) => {
         window.location.href = response.data;
       })
@@ -29,7 +26,5 @@ export class PremiumComponent {
       });
 
   }
-
-
 
 }

@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuardStandard {
+export class AuthGuardStandardForPremium {
 
   constructor(private router: Router) {}
 
@@ -16,9 +16,12 @@ export class AuthGuardStandard {
       try {
         const decodedToken: any = jwtDecode(token);
         const roles = decodedToken.roles;
-
-        if (roles.includes('ROLE_USER_STANDARD') || roles.includes('ROLE_USER_PREMIUM') || roles.includes('ROLE_USER_ADMIN')) {
+        console.log(roles)
+        if (roles == 'ROLE_USER_STANDARD') {
           return true;
+        } else if (roles.includes('ROLE_USER_PREMIUM')) {
+          this.router.navigate(['/premium/active']);
+          return false;
         } else {
           this.router.navigate(['/auth/login']);
           return false;

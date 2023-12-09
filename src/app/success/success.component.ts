@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
 
@@ -7,22 +7,41 @@ import {backendBaseUrl} from "../../../apiUtils";
   templateUrl: './success.component.html',
   styleUrls: ['./success.component.scss']
 })
-export class SuccessComponent {
+export class SuccessComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.fetchPremiumToken();
+  }
   authHeader  = {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token')
     }
   }
 
-  goPortal() {
-    axios
-      .post<any>(backendBaseUrl + "/create-customer-portal-session", this.authHeader)
-      .then((response) => {
-
+  fetchPremiumToken(): void {
+    axios.get(`${backendBaseUrl}/premium/`, this.authHeader)
+      .then(response => {
+        localStorage.setItem('token', response.data);
+        console.log(response.data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(error => {
+        console.error('Błąd podczas pobierania tokenu:', error);
       });
-
   }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
