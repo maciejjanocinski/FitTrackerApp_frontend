@@ -1,2 +1,29 @@
 <app-navbar></app-navbar>
-<p>recipes works!</p>
+
+<div class="mb-3 products">
+
+  <div class="card text-bg-dark mb-3">
+    <h5 class="card-header">Featured</h5>
+    <div class="card-body">
+      <form (ngSubmit)="searchRecipes()" [formGroup]="searchRecipesForm" class="products__search">
+        <div class="mb-3">
+          <label for="name" class="form-label">Search</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="product name">
+          <div *ngIf="searchRecipesFormError" class="text-danger mb-3">{{ searchRecipesFormError }}</div>
+          <button type="submit" class="btn btn-info" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span role="status">{{ loading ? ' Loading...' : 'Search' }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div class="products__listContainer">
+    <ul class="products__list">
+      <app-recipe-element *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-element>
+    </ul>
+  </div>
+</div>

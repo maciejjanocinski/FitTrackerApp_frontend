@@ -1,0 +1,119 @@
+<!-- app-product.component.html -->
+<li class="product">
+
+
+  <div class="card" style="width: 18rem;">
+    <div class="imgContainer">
+      <img [src]="recipe.image" class="card-img-top product__image" alt="...">
+    </div>
+    <div class="card-body">
+      <div class="nameContainer">
+        <h5 class="card-title product__name">{{ recipe.label }}</h5>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Kcal</th>
+          <th scope="col">Protein</th>
+          <th scope="col">Carbs</th>
+          <th scope="col">Fat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ recipe.caloriesPerServing }}</td>
+          <td>{{ recipe.proteinPerServing }}</td>
+          <td>{{recipe.carbsPerServing}}</td>
+          <td>{{ recipe.fatPerServing }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+              [attr.data-bs-target]="'#productModal' + recipe.id">
+        View Details
+      </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ProductModal" [id]="'productModal' + recipe.id" tabindex="-1"
+       aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ recipe.label }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="imgContainer">
+            <img [src]="recipe.image" class="card-img-top product__image" alt="...">
+          </div>
+          <div class="card-body">
+            <div class="nameContainer">
+              <h5 class="card-title product__name">{{ recipe.label }}</h5>
+            </div>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Kcal</th>
+                <th scope="col">Protein</th>
+                <th scope="col">Carbs</th>
+                <th scope="col">Fat</th>
+                <th scope="col">Fiber</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>{{ recipe.caloriesPerServing }}</td>
+                <td>{{ recipe.proteinPerServing }}</td>
+                <td>{{recipe.carbsPerServing}}</td>
+                <td>{{ recipe.fatPerServing }}</td>
+                <td>{{ recipe.fiberPerServing }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Yield</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>{{ recipe.yield }}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+
+          <div class="mb-3">
+
+            <ul *ngFor="let ingredient of recipe.ingredientLines" class="list-group">
+              <li class="list-group-item">{{ingredient.text}}</li>
+            </ul>
+
+
+            <hr>
+
+            <ul *ngFor="let nutrient of recipe.totalNutrients" >
+              <li>{{nutrient}}</li>
+            </ul>
+          </div>
+
+
+                    <div class="modal-footer">
+                      <div *ngIf="addProductError" class="text-danger mb-3">{{ addProductError }}</div>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" id="search" class="btn btn-success" (click)="search()">See the preparation</button>
+                      <button type="button" id="addButton" class="btn btn-primary"  data-bs-dismiss="modal" (click)="addRecipeToDiary()">Add to diary</button>
+                    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</li>

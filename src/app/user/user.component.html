@@ -104,4 +104,29 @@
 
         </form>
     </div>
+
+  <div class="mb-3 form user__deleteProfile">
+    <form (ngSubmit)="deleteProfile()" [formGroup]="deleteForm"
+          [attr.disabled]="isDeleteFormDisabled() ? true : null">
+
+      <div class="form-group" [class.user__disabledForm]="isDeleteFormDisabled()">
+
+        <div class="mb-3">
+          <label for="deletePassword" class="form-label">Old password</label>
+          <input type="password" class="form-control" id="deletePassword" formControlName="deletePassword">
+        </div>
+
+      </div>
+
+      <div class="user__buttons">
+        <button type="button" class="btn btn-primary" [disabled]="!isDeleteFormDisabled()"
+                (click)="toggleDeleteForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-danger" [class.user__disabledButton]="isDeleteFormDisabled()" [disabled]="isDeleteFormDisabled()">Delete account</button>
+      </div>
+      <div *ngIf="deleteFormError" class="text-danger mb-3">{{ deleteFormError }}</div>
+
+    </form>
+  </div>
+
 </div>

@@ -1,1 +1,12 @@
-<p>cancel works!</p>
+<div class="success_wrapper">
+  <div class="card bg-dark success_wrapper__card">
+    <div class="card-header ">
+      Failed payment
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Payment declined</h5>
+      <p class="card-text success_wrapper__card">You will be redirected in {{ countdown }} seconds...</p>
+      <button class="btn btn-success" (click)="skipCountdown()">Skip ahead immediately</button>
+    </div>
+  </div>
+</div>

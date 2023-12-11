@@ -35,10 +35,17 @@ export class GoalsComponent implements OnInit {
     axios.get<any>(backendBaseUrl + '/goal/', this.authHeader)
       .then(response => {
         this.goalData = response.data;
+
+
+
       })
       .catch(error => {
         console.log(error);
       });
+
+
+
+
   }
 
   setGoals() {
@@ -60,6 +67,8 @@ export class GoalsComponent implements OnInit {
       .post<any>(backendBaseUrl + '/goal/', goalDto, this.authHeader)
       .then((response) => {
         this.goalData = response.data;
+
+
         this.setGoalsForm.reset();
         this.setGoalsFormError = '';
       })

@@ -47,6 +47,7 @@ export class DiaryComponent implements OnInit {
       quantity: this.selectedQuantity
     };
 
+    console.log(requestBody)
     axios.patch(apiEndpoint, requestBody, this.authHeader)
         .then(response => {
           this.getDiaryData();

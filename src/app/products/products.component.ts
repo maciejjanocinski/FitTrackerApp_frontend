@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
-import {Router, UrlSerializer} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-products',

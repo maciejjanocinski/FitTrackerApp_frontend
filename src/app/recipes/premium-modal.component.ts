@@ -8,10 +8,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
       <h4 class="modal-title">Brak dostępu</h4>
     </div>
     <div class="modal-body">
-      <p>Nie masz uprawnień do tej sekcji. Aby uzyskać dostęp, zakup konto premium.</p>
+      <p>You don't have permission to access this section. To gain access, purchase a premium account.</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="confirm()">Zamknij</button>
+      <button type="button" class="btn btn-primary" (click)="confirm()">I understand</button>
     </div>
   `,
 })

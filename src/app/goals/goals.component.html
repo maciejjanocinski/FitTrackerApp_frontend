@@ -1,13 +1,27 @@
 <app-navbar></app-navbar>
 <div class="goalContainer">
-
   <div *ngIf="goalData" class="goalContainer__nutrients">
-      <p>Sum Kcal: {{ goalData.kcalGoal }}</p>
-      <p>Protein: {{ goalData.proteinInGram }}</p>
-      <p>Carbohydates: {{ goalData.carbohydratesInGram }}</p>
-      <p>Fat: {{ goalData.fatInGram }}</p>
-      <p>Fiber: {{ goalData.fiberInGram }}</p>
-  </div>
+
+    <table class="table diary__nutrients-table table-dark ">
+      <thead>
+      <tr>
+        <th scope="col">Kcal goal</th>
+        <th scope="col">Protein goal</th>
+        <th scope="col">Carbs goal</th>
+        <th scope="col">Fat goal</th>
+        <th scope="col">Fiber goal</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ goalData.kcalGoal }}</td>
+        <td>{{ goalData.proteinInGram }}</td>
+        <td>{{ goalData.carbohydratesInGram }}</td>
+        <td>{{ goalData.fatInGram }}</td>
+        <td>{{ goalData.fiberInGram }}</td>
+      </tr>
+      </tbody>
+    </table>
+
 
   <div class="mb-3 form goalContainer__form">
     <form (ngSubmit)="setGoals()" [formGroup]="setGoalsForm">
@@ -37,5 +51,5 @@
   </div>
 </div>
 
+</div>
 
-<!--//-->
