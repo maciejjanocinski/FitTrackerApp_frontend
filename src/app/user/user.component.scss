@@ -4,6 +4,27 @@
   justify-content: center;
   align-items: center;
 
+  &__form {
+    border: 7px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    padding: 2vh 7vw;
+
+    &--delete {
+      border-color: red;
+    }
+  }
+
+  input {
+    min-width: 100px;
+  }
+
+  h5 {
+    padding: 1px;
+    color: #ccc;
+  }
+
   &__buttons {
     display: flex;
     justify-content: space-between;
@@ -16,5 +37,9 @@
 
   &__disabledButton {
     opacity: 0;
+  }
+
+  #delete {
+    color: red;
   }
 }

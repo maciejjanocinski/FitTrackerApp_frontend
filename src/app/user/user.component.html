@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <div *ngIf="userData" class="user">
-    <div class="mb-3 form user__editUsernameForm ">
+  <h5>Edit username</h5>
+    <div class="mb-3 form user__form ">
         <form (ngSubmit)="editUsername()" [formGroup]="usernameForm"
               [attr.disabled]="isUsernameFormDisabled() ? true : null">
 
@@ -23,7 +24,8 @@
         </form>
     </div>
 
-    <div class="mb-3 form user__editUserForm ">
+  <h5>Edit user data</h5>
+    <div class="mb-3 form user__form ">
         <form (ngSubmit)="editUserData()" [formGroup]="UserDataForm"
               [attr.disabled]="isFormDisabled() ? true : null">
             <div class="form-group" [class.user__disabledForm]="isFormDisabled()">
@@ -71,7 +73,8 @@
         </form>
     </div>
 
-    <div class="mb-3 form user__editPasswordForm ">
+  <h5>Edit password</h5>
+    <div class="mb-3 form user__form ">
         <form (ngSubmit)="editPassword()" [formGroup]="passwordForm"
               [attr.disabled]="isPasswordFormDisabled() ? true : null">
 
@@ -104,4 +107,30 @@
 
         </form>
     </div>
+
+    <h5 id="delete">Delete profile</h5>
+  <div class="mb-3 form user__form user__form--delete">
+    <form (ngSubmit)="deleteProfile()" [formGroup]="deleteForm"
+          [attr.disabled]="isDeleteFormDisabled() ? true : null">
+
+      <div class="form-group" [class.user__disabledForm]="isDeleteFormDisabled()">
+
+        <div class="mb-3">
+          <label for="deletePassword" class="form-label">Current password</label>
+          <input type="password" class="form-control" id="deletePassword" formControlName="deletePassword">
+        </div>
+
+      </div>
+
+      <div class="user__buttons">
+        <button type="button" class="btn btn-danger" [disabled]="!isDeleteFormDisabled()"
+                (click)="toggleDeleteForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-danger" [class.user__disabledButton]="isDeleteFormDisabled()" [disabled]="isDeleteFormDisabled()">Delete account</button>
+      </div>
+      <div *ngIf="deleteFormError" class="text-danger mb-3">{{ deleteFormError }}</div>
+
+    </form>
+  </div>
+
 </div>

@@ -23,6 +23,7 @@ import { CancelComponent } from './cancel/cancel.component';
 import { ActivePremiumComponent } from './active-premium/active-premium.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PremiumModalComponent } from './recipes/premium-modal.component';
+import { RecipeElementComponent } from './recipe-element/recipe-element.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { PremiumModalComponent } from './recipes/premium-modal.component';
     SuccessComponent,
     CancelComponent,
     ActivePremiumComponent,
-    PremiumModalComponent
+    PremiumModalComponent,
+    RecipeElementComponent
   ],
   imports: [
     BrowserModule,

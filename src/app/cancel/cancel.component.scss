@@ -1,0 +1,21 @@
+.success_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__card {
+    color: white;
+    width: 80%;
+    max-width: 500px;
+
+    h5 {
+      padding: 2px 0;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+
+
