@@ -37,6 +37,9 @@ export class UserComponent implements OnInit {
       newPassword: ['', Validators.required],
       confirmNewPassword: ['', Validators.required],
     });
+    this.deleteForm = this.formBuilder.group({
+      deletePassword: ['', Validators.required],
+    });
 
   }
 
@@ -186,11 +189,11 @@ export class UserComponent implements OnInit {
     const formValues = this.deleteForm.value;
 
     const deleteProfileDto: any = {
-      password: formValues.password,
+      password: formValues.deletePassword,
     };
 
     axios
-      .delete<any>(backendBaseUrl + '/user', {
+      .delete<any>(backendBaseUrl + '/user/', {
         data: deleteProfileDto,
         headers: {Authorization: 'Bearer ' + localStorage.getItem('token')}
       })
@@ -198,7 +201,7 @@ export class UserComponent implements OnInit {
         this.deleteForm.reset();
         this.deleteFormError = '';
         localStorage.removeItem('token');
-        window.location.href = '/';
+        window.location.href = '/auth/register';
       })
       .catch((error) => {
         this.deleteFormError = error.response.data;
