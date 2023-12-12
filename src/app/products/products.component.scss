@@ -6,6 +6,10 @@
   margin: 0 auto;
   overflow-y: hidden !important;
 
+  label {
+    color: snow;
+  }
+
   &__search {
     width: 30vw;
     max-width: 500px;
@@ -23,7 +27,7 @@
 
   &__listContainer {
     height: 80vh;
-    border: 7px solid snow;
+    border: 2px solid snow;
     padding: 10px;
     border-radius: 10px;
     width: 100%;
