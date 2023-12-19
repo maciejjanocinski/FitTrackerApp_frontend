@@ -7,13 +7,19 @@
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ">
       <ul class="navbar-nav navbar__list">
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="'/diary'" (click)="isMenuCollapsed = true">Diary</a>
+          <a class="nav-link" [routerLink]="'/diary'" (click)="isMenuCollapsed = true">Food Diary</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/products'" (click)="isMenuCollapsed = true">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/goals'" (click)="isMenuCollapsed = true">Goals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/activities'" (click)="isMenuCollapsed = true">Activities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/workouts'" (click)="isMenuCollapsed = true">Workout Diary</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/recipes'" (click)="isMenuCollapsed = true">Recipes</a>

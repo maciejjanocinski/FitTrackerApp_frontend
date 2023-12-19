@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {Router} from "@angular/router";
+import {DeleteModalComponent} from "./deleteModal.component";
 
 @Component({
   selector: 'app-user',
@@ -11,8 +14,8 @@ import {animate, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0.3s ease-in-out', style({ opacity: 1 })),
+        style({opacity: 0}),
+        animate('0.3s ease-in-out', style({opacity: 1})),
       ]),
     ]),
   ],
@@ -36,7 +39,9 @@ export class UserComponent implements OnInit {
   deleteFormError: string = '';
   deleteForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -210,11 +215,13 @@ export class UserComponent implements OnInit {
         this.deleteForm.reset();
         this.deleteFormError = '';
         localStorage.removeItem('token');
-        window.location.href = '/auth/register';
+        this.router.navigate(['/auth/register']);
       })
       .catch((error) => {
         this.deleteFormError = error.response.data;
-      });
+      }).finally(() => {
+      const modalRef = this.modalService.show(DeleteModalComponent);
+    });
 
     this.isDeleteFormEnabled = false;
     this.deleteForm.disable();

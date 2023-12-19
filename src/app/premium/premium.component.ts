@@ -18,7 +18,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
   ],
 })
 export class PremiumComponent {
-
+  loading = false;
   constructor() { }
 
   authHeader  = {
@@ -28,6 +28,7 @@ export class PremiumComponent {
   }
 
   go() {
+    this.loading = true;
     axios
       .get<any>(backendBaseUrl + '/create-checkout-session', this.authHeader)
       .then((response) => {
@@ -35,7 +36,9 @@ export class PremiumComponent {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }).finally(() => {
+      this.loading = false;
+    });
 
   }
 

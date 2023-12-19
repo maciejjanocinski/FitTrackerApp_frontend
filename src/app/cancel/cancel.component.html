@@ -3,10 +3,11 @@
     <div class="card-header ">
       Failed payment
     </div>
-    <div class="card-body">
-      <h5 class="card-title">Payment declined</h5>
-      <p class="card-text success_wrapper__card">You will be redirected in {{ countdown }} seconds...</p>
-      <button class="btn btn-success" (click)="skipCountdown()">Skip ahead immediately</button>
+    <div class="card-body body">
+      <h5 class="card-title">Payment declined.</h5>
+      <mat-icon color="warn" class="icon">highlight_off</mat-icon>
+      <p class="card-text" style="color: white; margin: 0 auto 20px auto">You will be redirected in {{ countdown }} seconds...</p>
+      <button class="btn btn-success button" (click)="skipCountdown()">Skip ahead immediately</button>
     </div>
   </div>
 </div>

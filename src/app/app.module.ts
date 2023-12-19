@@ -27,44 +27,55 @@ import {RecipeElementComponent} from './recipe-element/recipe-element.component'
 import {BodyMetricsComponent} from './body-metrics/body-metrics.component';
 import {GoalInitComponent} from './goal-init/goal-init.component';
 import {GoalInitModalComponent} from "./goal-init/goalInit-modal.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import { ActivitiesComponent } from './activities/activities.component';
+import { ActivityElementComponent } from './activity-element/activity-element.component';
+import { WorkoutsComponent } from './workouts/workouts.component';
+import {DeleteModalComponent} from "./user/deleteModal.component";
+
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        RegisterComponent,
-        LoginComponent,
-        HomepageComponent,
-        DiaryComponent,
-        GoalsComponent,
-        UserComponent,
-        PremiumComponent,
-        RecipesComponent,
-        ProductsComponent,
-        LogoutComponent,
-        ProductComponent,
-        SuccessComponent,
-        CancelComponent,
-        ActivePremiumComponent,
-        PremiumModalComponent,
-        RecipeElementComponent,
-        BodyMetricsComponent,
-        GoalInitComponent,
-        GoalInitModalComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        NgbModule,
-        NavbarComponent,
-        MatDialogModule,
-        FormsModule,
-        ModalModule.forRoot()
-    ],
-    providers: [AuthGuardStandard],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    HomepageComponent,
+    DiaryComponent,
+    GoalsComponent,
+    UserComponent,
+    PremiumComponent,
+    RecipesComponent,
+    ProductsComponent,
+    LogoutComponent,
+    ProductComponent,
+    SuccessComponent,
+    CancelComponent,
+    ActivePremiumComponent,
+    PremiumModalComponent,
+    RecipeElementComponent,
+    BodyMetricsComponent,
+    GoalInitComponent,
+    GoalInitModalComponent,
+    ActivitiesComponent,
+    ActivityElementComponent,
+    WorkoutsComponent,
+    DeleteModalComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    NavbarComponent,
+    MatDialogModule,
+    FormsModule,
+    MatIconModule,
+    ModalModule.forRoot()
+  ],
+  providers: [AuthGuardStandard],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
