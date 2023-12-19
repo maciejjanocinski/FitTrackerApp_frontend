@@ -1,0 +1,70 @@
+<div class="goalInit" [@fadeIn]>
+<form (ngSubmit)="setGoal()" [formGroup]="goalDataForm" class="goalInit__form">
+
+  <h4>Almost there...</h4>
+  <h5>Specify your goals, you can always modify them later.</h5>
+
+  <div class="mb-3">
+    <label>Select your goal</label>
+    <select class="form-select" formControlName="goal">
+      <option value="maintain" >Maintain weight</option>
+      <option value="mildlose">Mild lose -0.25kg/week</option>
+      <option value="weightlose">Weight lose -0.5kg/week</option>
+      <option value="extremelose">Extreme weight lose -1kg/week</option>
+      <option value="mildgain">Mild gain +0.25kg/week</option>
+      <option value="weightgain">Mild gain +0.5kg/week</option>
+      <option value="extremegain">Extreme weight gain +1kg/week</option>
+    </select>
+
+    <label>How active are you during the day?</label>
+    <select class="form-select" formControlName="activityLevel">
+      <option value="1">1 - Very sedentary (little to no physical activity)</option>
+      <option value="2">2 - Sedentary (mostly sitting, minimal physical activity)</option>
+      <option value="3">3 - Low activity (some movement, but limited exercise)</option>
+      <option value="4">4 - Moderate activity (regular exercise or moderate physical activity)</option>
+      <option value="5">5 - Active (engaging in physical activity regularly)</option>
+      <option value="6">6 - Very active (frequent exercise and high physical activity)</option>
+      <option value="7">7 - Extremely active (intense physical activity throughout the day)</option>
+    </select>
+
+    <label>Choose your diet</label>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="dietType" value="balanced" name="dietType"
+             id="flexRadioDefault1" checked>
+      <label class="form-check-label" for="flexRadioDefault1">
+        Balanced
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="dietType" value="lowfat" name="dietType"
+             id="flexRadioDefault2">
+      <label class="form-check-label" for="flexRadioDefault2">
+        Low Fat
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="dietType" value="lowcarbs" name="dietType"
+             id="flexRadioDefault3">
+      <label class="form-check-label" for="flexRadioDefault3">
+        Low Carb
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="dietType" value="highprotein" name="dietType"
+             id="flexRadioDefault4">
+      <label class="form-check-label" for="flexRadioDefault4">
+        High Protein
+      </label>
+    </div>
+    <div *ngIf="goalDataError" class="text-danger mb-3">{{ goalDataError }}</div>
+    <button type="submit" class="btn btn-info" [disabled]="loading">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span role="status">{{ loading ? ' Loading...' : 'Set goal' }}</span>
+    </button>
+  </div>
+</form>
+</div>

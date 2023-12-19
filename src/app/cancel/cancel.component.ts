@@ -2,11 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-cancel',
   templateUrl: './cancel.component.html',
-  styleUrls: ['./cancel.component.scss']
+  styleUrls: ['./cancel.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class CancelComponent  implements OnInit {
   countdown: number = 5;

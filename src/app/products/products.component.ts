@@ -2,11 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
+import {PremiumModalComponent} from "../recipes/premium-modal.component";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class ProductsComponent implements OnInit {
   searchProductsForm: FormGroup = new FormGroup({});

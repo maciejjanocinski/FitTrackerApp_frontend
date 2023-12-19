@@ -4,11 +4,20 @@ import {RegisterDto} from './registerDto';
 import {backendBaseUrl} from '../../../../apiUtils';
 import axios from 'axios';
 import {Router} from '@angular/router';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
@@ -18,21 +27,23 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.registerForm = this.formBuilder.group({
       username: ['Maciej', Validators.required],
       password: ['Maciek123!', Validators.required],
       confirmPassword: ['Maciek123!', Validators.required],
       name: ['asd', Validators.required],
       surname: ['asd', Validators.required],
-      gender: ['MALE', Validators.required],
       email: ['maciek@gmail.com', [Validators.required]],
       phone: ['123123123', Validators.required]
     });
   }
 
   redirect() {
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['body-metrics']);
   }
+
+
 
   register() {
     if (this.registerForm.invalid) {
@@ -48,14 +59,14 @@ export class RegisterComponent implements OnInit {
       confirmPassword: formValues.confirmPassword,
       name: formValues.name,
       surname: formValues.surname,
-      gender: formValues.gender,
       email: formValues.email,
       phone: formValues.phone
     };
 
     axios
       .post(backendBaseUrl + '/auth/register', registerDto)
-      .then(() => {
+      .then((response) => {
+        localStorage.setItem('token', response.data.jwt);
         this.redirect();
       })
       .catch((error) => {

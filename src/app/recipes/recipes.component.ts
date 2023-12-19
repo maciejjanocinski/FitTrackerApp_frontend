@@ -2,11 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.scss']
+  styleUrls: ['./recipes.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class RecipesComponent implements OnInit {
   searchRecipesForm: FormGroup = new FormGroup({});

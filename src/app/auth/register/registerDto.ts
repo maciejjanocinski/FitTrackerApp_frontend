@@ -4,7 +4,6 @@ export class RegisterDto {
   confirmPassword: string | undefined;
   name: string | undefined;
   surname: string | undefined;
-  gender: string | undefined;
   email: string | undefined;
   phone: string | undefined;
 }

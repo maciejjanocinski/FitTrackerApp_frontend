@@ -1,0 +1,19 @@
+.metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: fit-content;
+  padding: 5vh 0;
+
+  h4, h5{
+    padding: 2px 0;
+  }
+
+  &__laterButton {
+    border: 1px solid white;
+    margin-left: 10px;
+  }
+}

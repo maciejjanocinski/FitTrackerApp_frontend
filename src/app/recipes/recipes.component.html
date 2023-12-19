@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="mb-3 products">
+<div class="mb-3 products" [@fadeIn]>
 
   <div class="card text-bg-dark mb-3">
     <h5 class="card-header">Recipes</h5>
@@ -21,7 +21,7 @@
 
 
 
-  <div class="products__listContainer">
+  <div class="products__listContainer" [@fadeIn]>
     <ul class="products__list">
       <app-recipe-element *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-element>
     </ul>

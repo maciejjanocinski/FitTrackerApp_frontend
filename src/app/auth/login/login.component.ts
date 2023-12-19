@@ -4,10 +4,19 @@ import {Router} from "@angular/router";
 import {LoginDto} from './loginDto';
 import {backendBaseUrl} from '../../../../apiUtils';
 import axios from 'axios';
+import {animate, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class LoginComponent implements OnInit {
 

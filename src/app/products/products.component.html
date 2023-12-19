@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="mb-3 products">
+<div class="mb-3 products" [@fadeIn]>
 
   <div class="card text-bg-dark mb-3">
     <h5 class="card-header">Products</h5>
@@ -23,7 +23,7 @@
 
   <div class="products__listContainer">
     <ul class="products__list">
-      <app-product *ngFor="let product of products" [thisProduct]="product"></app-product>
+      <app-product *ngFor="let product of products" [thisProduct]="product" [@fadeIn]></app-product>
     </ul>
   </div>
 </div>

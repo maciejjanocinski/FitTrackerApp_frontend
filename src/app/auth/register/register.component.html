@@ -1,5 +1,5 @@
 <div class="register">
-  <form (ngSubmit)="register()" [formGroup]="registerForm" class="mb-3 form">
+  <form (ngSubmit)="register()" [formGroup]="registerForm" class="mb-3 form" [@fadeIn]>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" class="form-control" id="username" formControlName="username">
@@ -19,10 +19,6 @@
     <div class="mb-3">
       <label for="surname" class="form-label">Surname</label>
       <input type="text" class="form-control" id="surname" formControlName="surname">
-    </div>
-    <div class="mb-3">
-      <label for="gender" class="form-label">Gender</label>
-      <input type="text" class="form-control" id="gender" formControlName="gender">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>

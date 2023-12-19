@@ -1,5 +1,5 @@
 <div class="login">
-  <form (ngSubmit)="login()" [formGroup]="loginForm" class="mb-3 form">
+  <form (ngSubmit)="login()" [formGroup]="loginForm" class="mb-3 form" [@fadeIn]>
     <div class="mb-3">
       <label for="username" class="form-label">Username</label>
       <input type="text" class="form-control" id="username" formControlName="username">

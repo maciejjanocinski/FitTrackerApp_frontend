@@ -2,11 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import axios from "axios";
 import { backendBaseUrl} from "../../../apiUtils";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.component.html',
-  styleUrls: ['./goals.component.scss']
+  styleUrls: ['./goals.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class GoalsComponent implements OnInit {
   goalData: any;
@@ -64,7 +73,7 @@ export class GoalsComponent implements OnInit {
     };
 
     axios
-      .post<any>(backendBaseUrl + '/goal/', goalDto, this.authHeader)
+      .post<any>(backendBaseUrl + '/goal/custom', goalDto, this.authHeader)
       .then((response) => {
         this.goalData = response.data;
 

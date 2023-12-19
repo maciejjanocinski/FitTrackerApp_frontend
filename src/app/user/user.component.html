@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div *ngIf="userData" class="user">
+<div *ngIf="userData" class="user" [@fadeIn]>
   <h5>Edit username</h5>
     <div class="mb-3 form user__form ">
         <form (ngSubmit)="editUsername()" [formGroup]="usernameForm"
