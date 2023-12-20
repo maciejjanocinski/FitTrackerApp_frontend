@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
     axios
       .post(backendBaseUrl + '/auth/login', loginDto)
       .then((response) => {
+
         localStorage.setItem('token', response.data);
         this.redirect();
       })

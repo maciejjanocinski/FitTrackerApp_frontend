@@ -23,6 +23,10 @@ import {DeleteModalComponent} from "./deleteModal.component";
 export class UserComponent implements OnInit {
   userData: any;
 
+  bodyMetricsForm: FormGroup = new FormGroup({});
+  bodyMetricsError: string = '';
+  isBodyMetricsFormEnabled: boolean = false;
+
   UserDataForm: FormGroup = new FormGroup({});
   UserDataFormError: string = '';
   isFormEnabled: boolean = false;
@@ -67,6 +71,7 @@ export class UserComponent implements OnInit {
     axios
       .get<any>(backendBaseUrl + '/user/', this.authHeader)
       .then((response) => {
+        console.log(response.data)
         this.userData = response.data;
 
         this.UserDataForm = this.formBuilder.group({
@@ -77,6 +82,16 @@ export class UserComponent implements OnInit {
           phone: [`${this.userData.phone}`, Validators.required],
         });
 
+        this.bodyMetricsForm = this.formBuilder.group({
+          gender: [`${this.userData.bodyMetrics.gender}`, Validators.required],
+          birthDate: [`${this.userData.bodyMetrics.birthDate}`, Validators.required],
+          height: [`${this.userData.bodyMetrics.height}`, Validators.required],
+          weight: [`${this.userData.bodyMetrics.weight}`, Validators.required],
+          neck: [`${this.userData.bodyMetrics.neck}`, Validators.required],
+          waist: [`${this.userData.bodyMetrics.waist}`, Validators.required],
+          hip: [`${this.userData.bodyMetrics.hip}`, Validators.required],
+        });
+
         this.usernameForm = this.formBuilder.group({
           username: [`${this.userData.username}`, Validators.required],
         });
@@ -85,11 +100,46 @@ export class UserComponent implements OnInit {
         this.passwordForm.disable();
         this.usernameForm.disable();
         this.deleteForm.disable();
+        this.bodyMetricsForm.disable();
 
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  editBodyMetrics() {
+    if (this.UserDataForm.invalid) {
+      this.UserDataFormError = "Please fill all fields";
+      return;
+    }
+
+    const formValues = this.bodyMetricsForm.value;
+
+    const editUserDto: any = {
+      gender: formValues.gender,
+      birthDate: formValues.birthDate,
+      height: formValues.height,
+      weight: formValues.weight,
+      neck: formValues.neck,
+      waist: formValues.waist,
+      hip: formValues.hip,
+    };
+
+    axios
+      .post<any>(backendBaseUrl + '/body-metrics/', editUserDto, this.authHeader).then((response) => {
+      this.userData = response.data;
+      console.log(response.data)
+      this.UserDataForm.reset();
+      this.UserDataFormError = '';
+      this.getUser();
+    })
+      .catch((error) => {
+        this.UserDataFormError = error.response.data;
+      });
+
+    this.isBodyMetricsFormEnabled = false;
+    this.bodyMetricsForm.disable();
   }
 
   editUserData() {
@@ -113,6 +163,7 @@ export class UserComponent implements OnInit {
     axios
       .patch<any>(backendBaseUrl + '/user/', editUserDto, this.authHeader).then((response) => {
       this.userData = response.data;
+      console.log(response.data)
       this.UserDataForm.reset();
       this.UserDataFormError = '';
       this.getUser();
@@ -166,7 +217,6 @@ export class UserComponent implements OnInit {
       username: formValues.username,
       name: this.userData.name,
       surname: this.userData.surname,
-      gender: this.userData.gender,
       email: this.userData.email,
       phone: this.userData.phone,
     };
@@ -227,6 +277,15 @@ export class UserComponent implements OnInit {
     this.deleteForm.disable();
   }
 
+  toggleBodyMetricsForm() {
+    this.isBodyMetricsFormEnabled = !this.isBodyMetricsFormEnabled;
+
+    if (this.isBodyMetricsFormEnabled) {
+      this.bodyMetricsForm.enable();
+    } else {
+      this.bodyMetricsForm.disable();
+    }
+  }
 
   toggleForm() {
     this.isFormEnabled = !this.isFormEnabled;
@@ -268,6 +327,10 @@ export class UserComponent implements OnInit {
     }
   }
 
+  isBodyMetricsFormDisabled() {
+    return !this.isBodyMetricsFormEnabled;
+  }
+
   isFormDisabled() {
     return !this.isFormEnabled;
   }
@@ -283,6 +346,5 @@ export class UserComponent implements OnInit {
   isDeleteFormDisabled() {
     return !this.isDeleteFormEnabled;
   }
-
 
 }

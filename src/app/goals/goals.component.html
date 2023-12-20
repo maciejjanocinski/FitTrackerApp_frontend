@@ -86,15 +86,17 @@
 
       </div>
       <div *ngIf="goalDataError" class="text-danger mb-3">{{ goalDataError }}</div>
+      <div class="buttons">
+        <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled()"
+                (click)="toggleUsernameForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-primary"
+                [class.disabledButton]="isUsernameFormDisabled()"
+                [disabled]="isUsernameFormDisabled()">
+          Update username
+        </button>
+      </div>
 
-      <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled()"
-              (click)="toggleUsernameForm()">Edit
-      </button>
-      <button type="submit" class="btn btn-primary"
-              [class.disabledButton]="isUsernameFormDisabled()"
-              [disabled]="isUsernameFormDisabled()">
-        Update username
-      </button>
     </form>
 
     <h5>Set your custom goal</h5>
@@ -106,36 +108,37 @@
 
           <div class="mb-3">
             <label for="kcal" class="form-label">Calories</label>
-            <input type="text" class="form-control" id="kcal" formControlName="kcal">
+            <input type="number" class="form-control" id="kcal" formControlName="kcal">
           </div>
 
           <div class="mb-3">
             <label for="proteinPercentage" class="form-label">Protein %</label>
-            <input type="text" class="form-control" id="proteinPercentage" formControlName="proteinPercentage">
+            <input type="number" class="form-control" id="proteinPercentage" formControlName="proteinPercentage">
           </div>
 
           <div class="mb-3">
             <label for="carbohydratesPercentage" class="form-label">Carbs %</label>
-            <input type="text" class="form-control" id="carbohydratesPercentage"
+            <input type="number" class="form-control" id="carbohydratesPercentage"
                    formControlName="carbohydratesPercentage">
           </div>
 
           <div class="mb-3">
             <label for="fatPercentage" class="form-label">Fat %</label>
-            <input type="text" class="form-control" id="fatPercentage" formControlName="fatPercentage">
+            <input type="number" class="form-control" id="fatPercentage" formControlName="fatPercentage">
           </div>
         </div>
 
         <div *ngIf="setGoalsFormError" class="text-danger mb-3">{{ setGoalsFormError }}</div>
-        <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled1()"
-                (click)="toggleUsernameForm1()">Edit
-        </button>
-        <button type="submit" class="btn btn-primary"
-                [class.disabledButton]="isUsernameFormDisabled1()"
-                [disabled]="isUsernameFormDisabled1()">
-          Update username
-        </button>
-
+        <div class="buttons">
+          <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled1()"
+                  (click)="toggleUsernameForm1()">Edit
+          </button>
+          <button type="submit" class="btn btn-primary"
+                  [class.disabledButton]="isUsernameFormDisabled1()"
+                  [disabled]="isUsernameFormDisabled1()">
+            Update username
+          </button>
+        </div>
       </form>
     </div>
   </div>

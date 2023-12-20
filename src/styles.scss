@@ -12,6 +12,7 @@
 form {
   border-radius: 10px;
   max-width: 900px;
+  min-width: 100px;
   width: 100%;
   padding: 2vh 4vw;
 }
@@ -28,4 +29,4 @@ body {
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
