@@ -11,4 +11,20 @@
     }
   }
 
+  &__form {
+    border: 1px solid black;
+  }
+
+  &__calculateForm {
+    border: 1px solid black;
+  }
+
+  .disabledForm {
+    opacity: 0.5;
+  }
+
+  .disabledButton {
+    opacity: 0;
+  }
+
 }

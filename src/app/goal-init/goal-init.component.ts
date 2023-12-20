@@ -23,7 +23,6 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class GoalInitComponent implements OnInit {
   goalDataForm: FormGroup = new FormGroup({});
   goalDataError: string = '';
-
   loading = false;
 
   constructor(private formBuilder: FormBuilder,
