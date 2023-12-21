@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLastlyAddedProducts();
     this.searchProductsForm = this.formBuilder.group({
       name: ['chicken', Validators.required],
     });
@@ -38,6 +39,22 @@ export class ProductsComponent implements OnInit {
       Authorization: 'Bearer ' + localStorage.getItem('token')
     }
   }
+
+  getLastlyAddedProducts() {
+    axios
+      .get<any>(`${backendBaseUrl}/user/lastly-added-products`, this.authHeader)
+      .then((response) => {
+        console.log("LASTLY ADDED")
+        console.log( response.data)
+        this.products = response.data;
+        this.searchProductsFormError = '';
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+  }
+
 
   searchProducts() {
     if (this.searchProductsForm.invalid) {

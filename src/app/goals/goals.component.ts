@@ -60,17 +60,11 @@ export class GoalsComponent implements OnInit {
     axios.get<any>(backendBaseUrl + '/goal/', this.authHeader)
       .then(response => {
         this.goalData = response.data;
-
-
-
+        console.log(response.data)
       })
       .catch(error => {
         console.log(error);
       });
-
-
-
-
   }
 
   setGoal() {
@@ -92,6 +86,7 @@ export class GoalsComponent implements OnInit {
       .post(backendBaseUrl + '/goal/', addGoalDto, this.authHeader)
       .then((response) => {
         this.goalData = response.data;
+        this.goalDataError = '';
       })
       .catch((error) => {
         this.goalDataError = error.response.data;

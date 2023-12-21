@@ -87,7 +87,7 @@
       </div>
       <div *ngIf="goalDataError" class="text-danger mb-3">{{ goalDataError }}</div>
       <div class="buttons">
-        <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled()"
+        <button type="button" class="btn btn-primary"
                 (click)="toggleUsernameForm()">Edit
         </button>
         <button type="submit" class="btn btn-primary"
@@ -130,7 +130,7 @@
 
         <div *ngIf="setGoalsFormError" class="text-danger mb-3">{{ setGoalsFormError }}</div>
         <div class="buttons">
-          <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled1()"
+          <button type="button" class="btn btn-primary"
                   (click)="toggleUsernameForm1()">Edit
           </button>
           <button type="submit" class="btn btn-primary"
