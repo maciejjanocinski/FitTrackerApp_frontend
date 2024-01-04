@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<section>
+<section [@fadeIn]>
   <div class="product">
     <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
     <div class="description">
@@ -8,8 +8,12 @@
     </div>
   </div>
   <form>
-    <input type="hidden" name="lookup_key" value="lookupkey" />
-    <button type="submit" (click)="go()"  id="checkout-button">Checkout</button>
+
+    <button type="submit" (click)="go()" id="checkout-button" class="btn btn-info" [disabled]="loading">
+      <input type="hidden" name="lookup_key" value="lookupkey" />
+      <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span role="status">{{ loading ? ' Loading...' : 'Checkout' }}</span>
+    </button>
   </form>
 
 

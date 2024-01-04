@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div *ngIf="diaryData">
+<div *ngIf="diaryData" [@fadeIn]>
     <div class="diary">
         <table class="table diary__nutrients-table table-dark ">
             <thead>
@@ -38,7 +38,7 @@
             </tr>
             </tbody>
         </table>
-
+      <p class="kcalLeft" >You have additional {{diaryData.kcalBurned}} kcal from workouts*</p>
 
         <table class="table diary__table table-dark  " id="tableCustom">
             <thead>
@@ -118,8 +118,6 @@
                                                 - {{measure.weight}} Gram
                                             </option>
                                         </select>
-
-
                                     </div>
 
                                     <div class="mb-3">

@@ -1,12 +1,13 @@
-<div class="success_wrapper">
+<div class="success_wrapper" [@fadeIn]>
   <div class="card bg-dark success_wrapper__card">
     <div class="card-header ">
       Success!
     </div>
-    <div class="card-body">
+    <div class="card-body body">
       <h5 class="card-title">Payment successful!</h5>
-      <p class="card-text success_wrapper__card">You will be redirected in {{ countdown }} seconds...</p>
-      <button class="btn btn-success" (click)="skipCountdown()">Skip ahead immediately</button>
+      <mat-icon color="accent" class="icon">check_circle_outline</mat-icon>
+      <p class="card-text" style="color: white; margin: 0 auto 20px auto">You will be redirected in {{ countdown }} seconds...</p>
+      <button class="btn btn-success button" (click)="skipCountdown()">Skip ahead immediately</button>
     </div>
   </div>
 </div>

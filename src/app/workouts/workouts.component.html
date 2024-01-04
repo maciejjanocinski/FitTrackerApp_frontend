@@ -1,0 +1,201 @@
+<app-navbar></app-navbar>
+<div *ngIf="workoutsData" [@fadeIn]>
+  <div class="diary">
+<!--    <table class="table diary__nutrients-table table-dark ">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col">#</th>-->
+<!--        <th scope="col">Kcal</th>-->
+
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <th class="bold-column">Sum kcal</th>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+
+<!--      </tr>-->
+
+<!--      </tbody>-->
+<!--    </table>-->
+
+
+    <table class="table diary__table table-dark  " id="tableCustom">
+      <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Type</th>
+        <th scope="col">Kcal Burned</th>
+        <th scope="col">Intensity Lvl</th>
+        <th scope="col">Duration (min)</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Product Info</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of workoutsData" id="{{product.id}}">
+        <td>{{ product.workoutType }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.kcalBurned }}</td>
+        <td>{{ product.intensityLevel }}</td>
+        <td>{{ product.durationInMinutes }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#productModal' + product.id">
+            Edit
+          </button>
+          <div class="modal fade" id="ProductModal" [id]="'productModal' + product.id" tabindex="-1"
+               aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{ product.workoutType }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <div class="nameContainer" style="display: flex; flex-direction: column">
+                      <h5 class="card-title product__name">{{ product.workoutType }}</h5>
+                      <p>{{ product.description }}</p>
+                    </div>
+                  </div>
+
+
+                  <div class="mb-3">
+
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Duration in minutes:</label>
+                    <input type="number" class="form-control" [(ngModel)]="selectedQuantity" placeholder="Enter duration (min)"
+                           step="0.1" pattern="\d+(\.\d{1})?">
+                  </div>
+
+                  <div class="modal-footer">
+                    <div *ngIf="editWorkoutError" class="text-danger mb-3">{{ editWorkoutError }}</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="addButton1" class="btn btn-primary"
+                            [disabled]="!selectedQuantity" data-bs-dismiss="modal"
+                            (click)="editWorkout(product.id)">Edit workout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" (click)=deleteProduct(product.id)>Delete
+          </button>
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                  [attr.data-bs-target]="'#productModal2' + product.id">
+            Info
+          </button>
+          <div class="modal fade" id="ProductModal2" [id]="'productModal2' + product.id" tabindex="-1"
+               aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel2">{{ product.workoutType }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                  </div>
+
+                  <table class="table nestedTable">
+                    <thead>
+                    <tr>
+                      <th scope="col">Kcal Burned</th>
+                      <th scope="col">Intensity Level</th>
+                      <th scope="col">Duration (min)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>{{ product.kcalBurned }}</td>
+                      <td>{{ product.intensityLevel }}</td>
+                      <td>{{ product.durationInMinutes }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <p style="margin: 20px 0 " >{{ product.description }}</p>
+
+
+                  <div class="modal-footer">
+                    <div class="buttons">
+                      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                              [attr.data-bs-target]="'#productModal3' + product.id">
+                        Edit
+                      </button>
+
+                      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                              (click)=deleteProduct(product.id)>Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="ProductModal3" [id]="'productModal3' + product.id" tabindex="-1"
+               aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel3">{{ product.workoutType }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <div class="nameContainer" style="display: flex; flex-direction: column">
+                      <h5 class="card-title product__name">{{ product.workoutType }}</h5>
+                      <p>{{ product.description }}</p>
+                    </div>
+                  </div>
+
+
+                  <div class="mb-3">
+
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Duration in minutes:</label>
+                    <input type="number" class="form-control" [(ngModel)]="selectedQuantity" placeholder="Enter duration (min)"
+                           step="0.1" pattern="\d+(\.\d{1})?">
+                  </div>
+
+                                    <div class="modal-footer">
+                                      <div *ngIf="editWorkoutError" class="text-danger mb-3">{{ editWorkoutError }}</div>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="button" id="addButton" class="btn btn-primary"
+                                              [disabled]="!selectedQuantity" data-bs-dismiss="modal"
+                                              (click)="editWorkout(product.id)">Edit workout
+                                      </button>
+                                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      </tbody>
+      <button type="button" class="btn btn-success" (click)="goToProducts()">Add new workout</button>
+
+    </table>
+
+  </div>
+</div>
+
+

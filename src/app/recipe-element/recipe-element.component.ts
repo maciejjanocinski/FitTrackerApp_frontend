@@ -2,11 +2,20 @@ import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 import {backendBaseUrl} from "../../../apiUtils";
 import axios from "axios";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-recipe-element',
   templateUrl: './recipe-element.component.html',
-  styleUrls: ['./recipe-element.component.scss']
+  styleUrls: ['./recipe-element.component.scss'],
+    animations: [
+        trigger('fadeIn', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('0.3s ease-in-out', style({ opacity: 1 })),
+            ]),
+        ]),
+    ],
 })
 export class RecipeElementComponent {
   @Input() recipe: any;

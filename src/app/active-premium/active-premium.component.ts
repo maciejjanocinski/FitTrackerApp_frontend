@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-active-premium',
   templateUrl: './active-premium.component.html',
-  styleUrls: ['./active-premium.component.scss']
+  styleUrls: ['./active-premium.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class ActivePremiumComponent {
 

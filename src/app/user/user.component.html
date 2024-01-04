@@ -1,115 +1,163 @@
 <app-navbar></app-navbar>
-<div *ngIf="userData" class="user">
+<div *ngIf="userData" class="user" [@fadeIn]>
+  <h5>Edit body metrics</h5>
+  <div class="user__form ">
+    <form (ngSubmit)="editBodyMetrics()" [formGroup]="bodyMetricsForm" class="mb-3 form"
+          [attr.disabled]="isBodyMetricsFormDisabled() ? true : null">
+      <div [class.user__disabledForm]="isBodyMetricsFormDisabled()">
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" aria-label="gender:" id="gender" formControlName="gender">
+          <option value="MALE">
+            Male
+          </option>
+          <option value="FEMALE">
+            Female
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="birthDate" class="form-label">BirthDate <span> </span> </label>
+        <input type="date" class="form-control" id="birthDate" formControlName="birthDate">
+      </div>
+      <div class="mb-3">
+        <label for="height" class="form-label">Height <span>(cm) </span> </label>
+        <input type="number" class="form-control" id="height" formControlName="height">
+      </div>
+      <div class="mb-3">
+        <label for="weight" class="form-label">Weight <span>(kg) </span> </label>
+        <input type="number" class="form-control" id="weight" formControlName="weight">
+      </div>
+      <div class="mb-3">
+        <label for="neck" class="form-label">Neck <span>(cm) </span> </label>
+        <input type="number" class="form-control" id="neck" formControlName="neck">
+      </div>
+      <div class="mb-3">
+        <label for="waist" class="form-label">Waist <span>(cm) </span></label>
+        <input type="number" class="form-control" id="waist" formControlName="waist">
+      </div>
+      <div class="mb-3">
+        <label for="hip" class="form-label">Hip <span>(cm) </span></label>
+        <input type="number" class="form-control" id="hip" formControlName="hip">
+      </div>
+      </div>
+
+      <div *ngIf="bodyMetricsError" class="text-danger mb-3">{{ bodyMetricsError }}</div>
+      <div class="user__buttons">
+        <button type="button" class="btn btn-primary"
+                (click)="toggleBodyMetricsForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isBodyMetricsFormDisabled()"
+                [disabled]="isBodyMetricsFormDisabled()">Update body metrics
+        </button>
+      </div>
+    </form>
+  </div>
+
   <h5>Edit username</h5>
-    <div class="mb-3 form user__form ">
-        <form (ngSubmit)="editUsername()" [formGroup]="usernameForm"
-              [attr.disabled]="isUsernameFormDisabled() ? true : null">
+  <div class="user__form ">
+    <form (ngSubmit)="editUsername()" [formGroup]="usernameForm"
+          [attr.disabled]="isUsernameFormDisabled() ? true : null">
 
-            <div class="form-group" [class.user__disabledForm]="isUsernameFormDisabled()">
+      <div class="form-group" [class.user__disabledForm]="isUsernameFormDisabled()">
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" formControlName="username">
-                </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username">
+        </div>
 
-            </div>
+      </div>
 
-            <div class="user__buttons">
-                <button type="button" class="btn btn-primary" [disabled]="!isUsernameFormDisabled()"
-                        (click)="toggleUsernameForm()">Edit
-                </button>
-                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isUsernameFormDisabled()" [disabled]="isUsernameFormDisabled()">Update username</button>
-            </div>
-            <div *ngIf="usernameFormError" class="text-danger mb-3">{{ usernameFormError }}</div>
-        </form>
-    </div>
+      <div class="user__buttons">
+        <button type="button" class="btn btn-primary"
+                (click)="toggleUsernameForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isUsernameFormDisabled()"
+                [disabled]="isUsernameFormDisabled()">Update username
+        </button>
+      </div>
+      <div *ngIf="usernameFormError" class="text-danger mb-3">{{ usernameFormError }}</div>
+    </form>
+  </div>
 
   <h5>Edit user data</h5>
-    <div class="mb-3 form user__form ">
-        <form (ngSubmit)="editUserData()" [formGroup]="UserDataForm"
-              [attr.disabled]="isFormDisabled() ? true : null">
-            <div class="form-group" [class.user__disabledForm]="isFormDisabled()">
+  <div class="user__form ">
+    <form (ngSubmit)="editUserData()" [formGroup]="UserDataForm"
+          [attr.disabled]="isFormDisabled() ? true : null">
+      <div class="form-group" [class.user__disabledForm]="isFormDisabled()">
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" formControlName="name">
-                </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
 
-                <div class="mb-3">
-                    <label for="surname" class="form-label">Surname</label>
-                    <input type="text" class="form-control" id="surname" formControlName="surname">
-                </div>
+        <div class="mb-3">
+          <label for="surname" class="form-label">Surname</label>
+          <input type="text" class="form-control" id="surname" formControlName="surname">
+        </div>
 
-                <div class="mb-3">
-                    <label for="gender" class="form-label">Gender</label>
-                    <select class="form-select" aria-label="gender:" id="gender" formControlName="gender">
-                        <option value="MALE">
-                            Male
-                        </option>
-                        <option value="FEMALE">
-                            Female
-                        </option>
-                    </select>
-                </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="text" class="form-control" id="email" formControlName="email">
-                </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" formControlName="phone">
+        </div>
+      </div>
 
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Phone</label>
-                    <input type="text" class="form-control" id="phone" formControlName="phone">
-                </div>
-            </div>
+      <div class="user__buttons">
+        <button type="button" class="btn btn-primary" (click)="toggleForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isFormDisabled()"
+                [disabled]="isFormDisabled()">Update profile
+        </button>
+      </div>
+      <div *ngIf="UserDataFormError" class="text-danger mb-3">{{ UserDataFormError }}</div>
 
-            <div class="user__buttons">
-                <button type="button" class="btn btn-primary" [disabled]="!isFormDisabled()" (click)="toggleForm()">Edit
-                </button>
-                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isFormDisabled()" [disabled]="isFormDisabled()">Update profile</button>
-            </div>
-            <div *ngIf="UserDataFormError" class="text-danger mb-3">{{ UserDataFormError }}</div>
-
-        </form>
-    </div>
+    </form>
+  </div>
 
   <h5>Edit password</h5>
-    <div class="mb-3 form user__form ">
-        <form (ngSubmit)="editPassword()" [formGroup]="passwordForm"
-              [attr.disabled]="isPasswordFormDisabled() ? true : null">
+  <div class="user__form ">
+    <form (ngSubmit)="editPassword()" [formGroup]="passwordForm"
+          [attr.disabled]="isPasswordFormDisabled() ? true : null">
 
-            <div class="form-group" [class.user__disabledForm]="isPasswordFormDisabled()">
+      <div class="form-group" [class.user__disabledForm]="isPasswordFormDisabled()">
 
-                <div class="mb-3">
-                    <label for="oldPassword" class="form-label">Old password</label>
-                    <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword">
-                </div>
+        <div class="mb-3">
+          <label for="oldPassword" class="form-label">Old password</label>
+          <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword">
+        </div>
 
-                <div class="mb-3">
-                    <label for="newPassword" class="form-label">New password</label>
-                    <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
-                </div>
+        <div class="mb-3">
+          <label for="newPassword" class="form-label">New password</label>
+          <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+        </div>
 
-                <div class="mb-3">
-                    <label for="confirmNewPassword" class="form-label">Confirm new password</label>
-                    <input type="password" class="form-control" id="confirmNewPassword"
-                           formControlName="confirmNewPassword">
-                </div>
-            </div>
+        <div class="mb-3">
+          <label for="confirmNewPassword" class="form-label">Confirm new password</label>
+          <input type="password" class="form-control" id="confirmNewPassword"
+                 formControlName="confirmNewPassword">
+        </div>
+      </div>
 
-            <div class="user__buttons">
-                <button type="button" class="btn btn-primary" [disabled]="!isPasswordFormDisabled()"
-                        (click)="togglePasswordForm()">Edit
-                </button>
-                <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isPasswordFormDisabled()" [disabled]="isPasswordFormDisabled()">Update password</button>
-            </div>
-            <div *ngIf="passwordFormError" class="text-danger mb-3">{{ passwordFormError }}</div>
+      <div class="user__buttons">
+        <button type="button" class="btn btn-primary"
+                (click)="togglePasswordForm()">Edit
+        </button>
+        <button type="submit" class="btn btn-primary" [class.user__disabledButton]="isPasswordFormDisabled()"
+                [disabled]="isPasswordFormDisabled()">Update password
+        </button>
+      </div>
+      <div *ngIf="passwordFormError" class="text-danger mb-3">{{ passwordFormError }}</div>
 
-        </form>
-    </div>
+    </form>
+  </div>
 
-    <h5 id="delete">Delete profile</h5>
-  <div class="mb-3 form user__form user__form--delete">
+  <h5 id="delete">Delete profile</h5>
+  <div class="user__form user__form--delete">
     <form (ngSubmit)="deleteProfile()" [formGroup]="deleteForm"
           [attr.disabled]="isDeleteFormDisabled() ? true : null">
 
@@ -123,14 +171,15 @@
       </div>
 
       <div class="user__buttons">
-        <button type="button" class="btn btn-danger" [disabled]="!isDeleteFormDisabled()"
+        <button type="button" class="btn btn-danger"
                 (click)="toggleDeleteForm()">Edit
         </button>
-        <button type="submit" class="btn btn-danger" [class.user__disabledButton]="isDeleteFormDisabled()" [disabled]="isDeleteFormDisabled()">Delete account</button>
+        <button type="submit" class="btn btn-danger" [class.user__disabledButton]="isDeleteFormDisabled()"
+                [disabled]="isDeleteFormDisabled()">Delete account
+        </button>
       </div>
       <div *ngIf="deleteFormError" class="text-danger mb-3">{{ deleteFormError }}</div>
 
     </form>
   </div>
-
 </div>

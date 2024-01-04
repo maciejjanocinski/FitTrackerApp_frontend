@@ -2,11 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import axios from "axios";
 import {backendBaseUrl} from "../../../apiUtils";
 import {Router} from "@angular/router";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-success',
   templateUrl: './success.component.html',
-  styleUrls: ['./success.component.scss']
+  styleUrls: ['./success.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s ease-in-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class SuccessComponent implements OnInit {
   countdown: number = 5;

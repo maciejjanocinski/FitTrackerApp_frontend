@@ -5,11 +5,11 @@
   align-items: center;
 
   &__form {
-    border: 7px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 10px;
-    width: 100%;
+    margin-bottom: 2vh;
+    width: 90%;
     max-width: 600px;
-    padding: 2vh 7vw;
 
     &--delete {
       border-color: red;
@@ -17,7 +17,7 @@
   }
 
   input {
-    min-width: 100px;
+    min-width: 50px;
   }
 
   h5 {

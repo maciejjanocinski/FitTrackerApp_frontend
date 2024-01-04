@@ -1,4 +1,3 @@
-// premium-modal.component.ts
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 

@@ -6,12 +6,46 @@
   &__nutrients {
     display: flex;
     flex-direction: column;
-    p{
+
+    p {
       padding: 1vh 0;
     }
   }
 
-  &__form {
+  h5 {
+    color: white;
+    margin: 2vh 0 2vh 2vh;
+    font-size: 1rem;
 
   }
+
+  select option {
+    max-width: 20vw !important;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__form {
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 0 1vh;
+  }
+
+  &__calculateForm {
+    border: 2px solid white;
+    margin: 0 auto;
+    max-width: 94vw;
+  }
+
+  .disabledForm {
+    opacity: 0.5;
+  }
+
+  .disabledButton {
+    opacity: 0;
+  }
+
 }

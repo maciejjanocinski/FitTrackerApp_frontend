@@ -8,8 +8,17 @@
   color: black;
 }
 
-td, th
-{
+
+form {
+  border-radius: 10px;
+  max-width: 900px;
+  min-width: 100px;
+  width: 100%;
+  padding: 2vh 4vw;
+}
+
+
+td, th {
   text-align: center;
 }
 
@@ -18,7 +27,6 @@ body {
 
 }
 
-.form {
-  max-width: 500px;
-  width: 100vw;
-}
+
+html, body { height: 100%; }
+

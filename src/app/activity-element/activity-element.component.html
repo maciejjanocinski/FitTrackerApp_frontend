@@ -1,0 +1,61 @@
+<!-- app-product.component.html -->
+<li class="product" [@fadeIn]>
+
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="nameContainer">
+        <h5 class="card-title product__name">{{ activity.activity }}</h5>
+      </div>
+      <p>{{ activity.description }}</p>
+      <p>Intensity level: {{ activity.intensityLevel }}</p>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+              [attr.data-bs-target]="'#productModal' + activity.id">
+        View Details
+      </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ProductModal" [id]="'productModal' + activity.id" tabindex="-1"
+       aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ activity.name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body">
+            <div class="nameContainer" style="display: flex; flex-direction: column">
+              <h5 class="card-title product__name">{{ activity.activity }}</h5>
+              <p>{{ activity.description }}</p>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+
+
+          </div>
+
+          <div class="mb-3">
+            <label>Duration in minutes:</label>
+            <input type="number" class="form-control" [(ngModel)]="selectedQuantity" placeholder="Enter duration (min)"
+                   step="0.1" pattern="\d+(\.\d{1})?">
+          </div>
+
+          <div class="modal-footer">
+            <div *ngIf="addProductError" class="text-danger mb-3">{{ addProductError }}</div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="addButton" class="btn btn-primary"
+                    [disabled]="!selectedQuantity" data-bs-dismiss="modal"
+                    (click)="onSaveChanges()">Add workout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</li>

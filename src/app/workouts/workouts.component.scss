@@ -1,0 +1,133 @@
+h2 {
+  align-self: flex-start;
+  margin-left: 15vw;
+  margin-top: 5vh;
+  padding: 1vh 0;
+}
+
+.diary {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  &__nutrients-table {
+    margin: 0 auto;
+    max-width: 90vw;
+    width: 90vw;
+    margin-bottom: 20vh;
+  }
+
+
+  &__table {
+    margin: 0 auto;
+    padding: 0 1vw;
+    width: 90vw;
+
+    li {
+      padding: 1vh 0;
+    }
+  }
+
+  &__listImg {
+    width: 50px;
+    max-width: 700px;
+  }
+
+  &__newProductRow {
+    margin: 0 auto;
+    width: 70vw;
+    padding-bottom: 2vh;
+  }
+
+}
+
+.imgContainer {
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 200px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .image {
+    width: 100%;
+    max-width: 200px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-around !important;
+  margin: 0 auto;
+  align-items: center;
+}
+
+
+/* Dla tabeli głównej */
+@media screen and (min-width: 1001px) {
+
+  .diary {
+
+    &__table {
+      width: 50vw;
+    }
+
+    &__nutrients-table {
+      max-width: 600px;
+    }
+  }
+
+
+  #tableCustom th:last-child,
+  #tableCustom td:last-child {
+    display: none;
+  }
+
+  .nestedTable th:last-child,
+  .nestedTable td:last-child {
+    display: table-cell !important;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+  #tableCustom th:nth-child(1),
+  #tableCustom td:nth-child(1),
+  #tableCustom th:nth-child(2),
+  #tableCustom td:nth-child(2),
+  #tableCustom th:last-child,
+  #tableCustom td:last-child {
+    display: table-cell;
+  }
+
+
+  /* Ukryj pozostałe kolumny */
+  #tableCustom th:not(:nth-child(1)):not(:nth-child(2)):not(:last-child),
+  #tableCustom td:not(:nth-child(1)):not(:nth-child(2)):not(:last-child) {
+    display: none;
+  }
+
+  .nestedTable th:not(:nth-child(1)):not(:nth-child(2)):not(:last-child),
+  .nestedTable td:not(:nth-child(1)):not(:nth-child(2)):not(:last-child) {
+    display: table-cell !important;
+  }
+
+
+}
+

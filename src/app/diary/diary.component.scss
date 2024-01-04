@@ -16,9 +16,11 @@ h2 {
     margin: 0 auto;
     max-width: 90vw;
     width: 90vw;
-    margin-bottom: 20vh;
   }
 
+  .kcalLeft {
+    margin: 0 auto 20vh auto;
+  }
 
   &__table {
     margin: 0 auto;

@@ -3,16 +3,34 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-
+font-size: 1rem;
   &__card {
     color: white;
     width: 80%;
     max-width: 500px;
+    display: flex;
 
     h5 {
       padding: 2px 0;
       margin-bottom: 20px;
     }
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon {
+    font-size: 80px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto 30px auto !important;
+  }
+
+  .button {
+    max-width: 60%;
+    margin: 0 auto;
   }
 }
 

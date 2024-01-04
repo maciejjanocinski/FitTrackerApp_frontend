@@ -1,0 +1,50 @@
+<div class="metrics" [@fadeIn]>
+  <form (ngSubmit)="register()" [formGroup]="bodyMetricsForm" class="mb-3 form">
+
+    <h4>Hello, {{name}}! Nice to see you.</h4>
+    <h5>We need more information about you before we can start.
+      You can either fill it now or do it later <br>(in "My account").
+      If you decide to change it later we will fill this form with default values.<br> (Man, 180cm, 80kg)</h5>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Gender</label>
+      <select class="form-select" aria-label="gender:" id="gender" formControlName="gender">
+        <option value="MALE">
+          Male
+        </option>
+        <option value="FEMALE">
+          Female
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="birthDate" class="form-label">BirthDate <span> </span> </label>
+      <input type="date" class="form-control" id="birthDate" formControlName="birthDate">
+    </div>
+    <div class="mb-3">
+      <label for="height" class="form-label">Height <span>(cm) </span> </label>
+      <input type="number" class="form-control" id="height" formControlName="height">
+    </div>
+    <div class="mb-3">
+      <label for="weight" class="form-label">Weight <span>(kg) </span> </label>
+      <input type="number" class="form-control" id="weight" formControlName="weight">
+    </div>
+    <div class="mb-3">
+      <label for="neck" class="form-label">Neck <span>(cm) </span> </label>
+      <input type="number" class="form-control" id="neck" formControlName="neck">
+    </div>
+    <div class="mb-3">
+      <label for="waist" class="form-label">Waist <span>(cm) </span></label>
+      <input type="number" class="form-control" id="waist" formControlName="waist">
+    </div>
+    <div class="mb-3">
+      <label for="hip" class="form-label">Hip <span>(cm) </span></label>
+      <input type="number" class="form-control" id="hip" formControlName="hip">
+    </div>
+    <div *ngIf="bodyMetricsFormError" class="text-danger mb-3">{{ bodyMetricsFormError }}</div>
+    <div class="buttons">
+      <button type="submit" class="btn btn-primary">Continue</button>
+      <button class="btn btn-secondary metrics__laterButton" (click)="redirect()">Do it later</button>
+    </div>
+  </form>
+
+</div>
