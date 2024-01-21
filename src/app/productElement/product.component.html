@@ -77,7 +77,7 @@
             <div class="mb-3">
               <label>Select Measure:</label>
               <select class="form-select measures" [(ngModel)]="selectedMeasure" aria-label="Select Measure:">
-                <option *ngFor="let measure of thisProduct.measures" [value]="measure.name" class="measures"> {{ measure.name }}
+                <option *ngFor="let measure of thisProduct.measures" [value]="measure.label" class="measures"> {{ measure.label }}
                   - {{measure.weight}} Gram
                 </option>
               </select>

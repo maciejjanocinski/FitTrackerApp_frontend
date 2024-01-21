@@ -14,27 +14,27 @@
             <tbody>
             <tr>
                 <th class="bold-column">Sum kcal</th>
-                <td>{{ diaryData.sumKcal }}</td>
-                <td>{{ diaryData.sumProtein }}</td>
-                <td>{{ diaryData.sumCarbohydrates }}</td>
-                <td>{{ diaryData.sumFat }}</td>
-                <td>{{ diaryData.sumFiber }}</td>
+                <td>{{ diaryData.sumNutrients.kcal}}</td>
+                <td>{{ diaryData.sumNutrients.proteinGrams }}</td>
+                <td>{{ diaryData.sumNutrients.carbohydratesGrams }}</td>
+                <td>{{ diaryData.sumNutrients.fatGrams }}</td>
+                <td>{{ diaryData.sumNutrients.fiberGrams }}</td>
             </tr>
             <tr>
                 <th class="bold-column">Your daily goal</th>
-                <td>{{ diaryData.goalKcal }}</td>
-                <td>{{ diaryData.goalProtein }}</td>
-                <td>{{ diaryData.goalCarbohydrates }}</td>
-                <td>{{ diaryData.goalFat }}</td>
-                <td>{{ diaryData.goalFiber }}</td>
+              <td>{{ diaryData.goalNutrients.kcal}}</td>
+              <td>{{ diaryData.goalNutrients.proteinGrams }}</td>
+              <td>{{ diaryData.goalNutrients.carbohydratesGrams }}</td>
+              <td>{{ diaryData.goalNutrients.fatGrams }}</td>
+              <td>{{ diaryData.goalNutrients.fiberGrams }}</td>
             </tr>
             <tr>
                 <th class="bold-column">Remaining</th>
-                <td>{{ diaryData.leftKcal }}</td>
-                <td>{{ diaryData.leftProtein }}</td>
-                <td>{{ diaryData.leftCarbohydrates }}</td>
-                <td>{{ diaryData.leftFat }}</td>
-                <td>{{ diaryData.leftFiber }}</td>
+              <td>{{ diaryData.leftNutrients.kcal}}</td>
+              <td>{{ diaryData.leftNutrients.proteinGrams }}</td>
+              <td>{{ diaryData.leftNutrients.carbohydratesGrams }}</td>
+              <td>{{ diaryData.leftNutrients.fatGrams }}</td>
+              <td>{{ diaryData.leftNutrients.fiberGrams }}</td>
             </tr>
             </tbody>
         </table>
@@ -57,15 +57,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let product of diaryData.productsInDiary" id="{{product.id}}">
+            <tr *ngFor="let product of diaryData.products" id="{{product.id}}">
                 <td><img class="diary__listImg" src="{{ product.image }}" alt="{{ product.name }}"></td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.quantity }}</td>
-                <td>{{ product.currentlyUsedMeasure }}</td>
-                <td>{{ product.kcal }}</td>
-                <td>{{ product.protein }}</td>
-                <td>{{ product.carbohydrates }}</td>
-                <td>{{ product.fat }}</td>
+                <td>{{ product.currentlyUsedMeasureName }}</td>
+                <td>{{ product.nutrients.kcal }}</td>
+                <td>{{ product.nutrients.proteinGrams }}</td>
+                <td>{{ product.nutrients.carbohydratesGrams }}</td>
+                <td>{{ product.nutrients.fatGrams }}</td>
                 <td>
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                             [attr.data-bs-target]="'#productModal' + product.id">
@@ -98,11 +98,11 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>{{ product.kcal }}</td>
-                                                <td>{{ product.protein }}</td>
-                                                <td>{{product.carbohydrates}}</td>
-                                                <td>{{ product.fat }}</td>
-                                                <td>{{ product.fiber }}</td>
+                                                <td>{{ product.nutrients.kcal }}</td>
+                                                <td>{{ product.nutrients.proteinGrams }}</td>
+                                                <td>{{product.nutrients.carbohydratesGrams}}</td>
+                                                <td>{{ product.nutrients.fatGrams }}</td>
+                                                <td>{{ product.nutrients.fiberGrams }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -114,7 +114,7 @@
                                         <select class="form-select" [(ngModel)]="selectedMeasure"
                                                 aria-label="Select Measure:">
                                             <option *ngFor="let measure of product.measures"
-                                                    [value]="measure.name"> {{ measure.name }}
+                                                    [value]="measure.label"> {{ measure.label }}
                                                 - {{measure.weight}} Gram
                                             </option>
                                         </select>
@@ -179,11 +179,11 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>{{ product.kcal }}</td>
-                                                <td>{{ product.protein }}</td>
-                                                <td>{{product.carbohydrates}}</td>
-                                                <td>{{ product.fat }}</td>
-                                                <td>{{ product.fiber }}</td>
+                                                <td>{{ product.nutrients.kcal }}</td>
+                                                <td>{{product.nutrients.proteinGrams }}</td>
+                                                <td>{{product.nutrients.carbohydratesGrams}}</td>
+                                                <td>{{product.nutrients.fatGrams }}</td>
+                                                <td>{{ product.nutrients.fiberGrams }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -199,7 +199,7 @@
                                         <tbody>
                                         <tr>
                                             <td>{{ product.quantity }}</td>
-                                            <td>{{ product.currentlyUsedMeasure }}</td>
+                                            <td>{{ product.currentlyUsedMeasureName }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -249,11 +249,11 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>{{ product.kcal }}</td>
-                                                <td>{{ product.protein }}</td>
-                                                <td>{{product.carbohydrates}}</td>
-                                                <td>{{ product.fat }}</td>
-                                                <td>{{ product.fiber }}</td>
+                                                <td>{{ product.nutrients.kcal }}</td>
+                                                <td>{{product.nutrients.proteinGrams }}</td>
+                                                <td>{{product.nutrients.carbohydratesGrams}}</td>
+                                                <td>{{product.nutrients.fatGrams}}</td>
+                                                <td>{{ product.nutrients.fiberGrams }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -266,7 +266,7 @@
                                         <select class="form-select" [(ngModel)]="selectedMeasure"
                                                 aria-label="Select Measure:">
                                             <option *ngFor="let measure of product.measures"
-                                                    [value]="measure.name"> {{ measure.name }}
+                                                    [value]="measure.label"> {{ measure.label }}
                                                 - {{measure.weight}} Gram
                                             </option>
                                         </select>

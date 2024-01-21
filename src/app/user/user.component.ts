@@ -265,12 +265,12 @@ export class UserComponent implements OnInit {
         this.deleteForm.reset();
         this.deleteFormError = '';
         localStorage.removeItem('token');
+        const modalRef = this.modalService.show(DeleteModalComponent);
         this.router.navigate(['/auth/register']);
       })
       .catch((error) => {
         this.deleteFormError = error.response.data;
       }).finally(() => {
-      const modalRef = this.modalService.show(DeleteModalComponent);
     });
 
     this.isDeleteFormEnabled = false;
