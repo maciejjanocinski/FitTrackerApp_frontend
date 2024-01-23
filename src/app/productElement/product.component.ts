@@ -45,15 +45,12 @@ export class ProductComponent {
             quantity: this.selectedQuantity
         };
 
-
-        console.log('Request body', requestBody)
-
         axios.post(apiEndpoint, requestBody, this.authHeader)
             .then(response => {
                 this.router.navigate(['diary']);
             })
             .catch(error => {
-                console.error('Error making request', error);
+              this.addProductError = error.response.data
             });
     }
 

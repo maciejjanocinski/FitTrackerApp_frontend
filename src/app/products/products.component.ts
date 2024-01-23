@@ -44,8 +44,6 @@ export class ProductsComponent implements OnInit {
     axios
       .get<any>(`${backendBaseUrl}/user/lastly-added-products`, this.authHeader)
       .then((response) => {
-        console.log("LASTLY ADDED")
-        console.log( response.data)
         this.products = response.data;
         this.searchProductsFormError = '';
       })

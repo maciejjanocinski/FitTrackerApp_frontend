@@ -87,7 +87,7 @@ export class BodyMetricsComponent implements OnInit {
         this.redirect();
       })
       .catch((error) => {
-        this.bodyMetricsFormError = error.response;
+        this.bodyMetricsFormError = error.response.data;
       });
 
   }

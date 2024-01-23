@@ -125,17 +125,18 @@ export class UserComponent implements OnInit {
       waist: formValues.waist,
       hip: formValues.hip,
     };
+    console.log(editUserDto)
 
     axios
       .post<any>(backendBaseUrl + '/body-metrics/', editUserDto, this.authHeader).then((response) => {
       this.userData = response.data;
       console.log(response.data)
-      this.UserDataForm.reset();
-      this.UserDataFormError = '';
+      this.bodyMetricsForm.reset();
+      this.bodyMetricsError = '';
       this.getUser();
     })
       .catch((error) => {
-        this.UserDataFormError = error.response.data;
+        this.bodyMetricsError = error.response.data;
       });
 
     this.isBodyMetricsFormEnabled = false;
@@ -155,7 +156,6 @@ export class UserComponent implements OnInit {
       username: usernameData.username,
       name: formValues.name,
       surname: formValues.surname,
-      gender: formValues.gender,
       email: formValues.email,
       phone: formValues.phone,
     };

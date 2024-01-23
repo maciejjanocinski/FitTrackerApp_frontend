@@ -13,11 +13,11 @@
       </thead>
       <tbody>
       <tr>
-        <td>{{ goalData.kcalGoal }}</td>
-        <td>{{ goalData.proteinInGram }}</td>
-        <td>{{ goalData.carbohydratesInGram }}</td>
-        <td>{{ goalData.fatInGram }}</td>
-        <td>{{ goalData.fiberInGram }}</td>
+        <td>{{ goalData.kcal }}</td>
+        <td>{{ goalData.proteinGrams }}</td>
+        <td>{{ goalData.carbohydratesGrams }}</td>
+        <td>{{ goalData.fatGrams }}</td>
+        <td>{{ goalData.fiberGrams }}</td>
       </tr>
       </tbody>
     </table>
@@ -108,23 +108,23 @@
 
           <div class="mb-3">
             <label for="kcal" class="form-label">Calories</label>
-            <input type="number" class="form-control" id="kcal" formControlName="kcal">
+            <input type="number" min="0" class="form-control" id="kcal" formControlName="kcal">
           </div>
 
           <div class="mb-3">
             <label for="proteinPercentage" class="form-label">Protein %</label>
-            <input type="number" class="form-control" id="proteinPercentage" formControlName="proteinPercentage">
+            <input type="number" min="0" class="form-control" id="proteinPercentage" formControlName="proteinPercentage">
           </div>
 
           <div class="mb-3">
             <label for="carbohydratesPercentage" class="form-label">Carbs %</label>
-            <input type="number" class="form-control" id="carbohydratesPercentage"
+            <input type="number" class="form-control" min="0" id="carbohydratesPercentage"
                    formControlName="carbohydratesPercentage">
           </div>
 
           <div class="mb-3">
             <label for="fatPercentage" class="form-label">Fat %</label>
-            <input type="number" class="form-control" id="fatPercentage" formControlName="fatPercentage">
+            <input type="number" min="0"  class="form-control" id="fatPercentage" formControlName="fatPercentage">
           </div>
         </div>
 
